@@ -1,0 +1,23 @@
+{
+  "name": "ogygia",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": {
+    "name": "Adam Becker",
+    "email": "adambbecker@gmail.com",
+    "url": "https://github.com/adambbecker"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.4.3",
+    "gulp-cssmin": "^0.1.6",
+    "lodash": "^2.4.1",
+    "react": "^0.12.2",
+    "reactify": "^0.17.1"
+  }
+}
