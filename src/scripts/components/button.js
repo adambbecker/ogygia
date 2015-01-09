@@ -100,6 +100,7 @@ module.exports = React.createClass( {
       this.props.disabled && buttonStyles.baseDisabled,
       this.props.primary && buttonStyles.primary,
       this.props.primary && ( this.state.hover || this.props.hover ) && buttonStyles.primaryHover,
+      this.props.primary && ( this.state.focus || this.props.focus ) && buttonStyles.primaryFocus,
       this.props.primary && ( this.state.active || this.props.active ) && buttonStyles.primaryActive,
       this.props.primary && this.props.disabled && buttonStyles.primaryDisabled
     );

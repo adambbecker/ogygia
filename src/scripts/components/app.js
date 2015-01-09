@@ -10,6 +10,7 @@ var React = require('react');
 // ---- Internal Dependencies ----
 var MainHeader = require('./mainHeader');
 var StandardButtonsDemo = require('./demos/standardButtons');
+var PrimaryButtonsDemo = require('./demos/primaryButtons');
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -31,6 +32,7 @@ module.exports = React.createClass( {
         <MainHeader />
         <div style={ demosStyles }>
           <StandardButtonsDemo />
+          <PrimaryButtonsDemo />
         </div>
       </div>
     );

@@ -1,8 +1,8 @@
-// =========================================
-// App.js
+// ===========================================
+// StandardButtons.js
 // ----
-// Main app js that gets rendered in main.js
-// =========================================
+// Demo section for the standard styled buttons
+// ===========================================
 
 // ---- External Dependencies ----
 var React = require( 'react' );
@@ -17,11 +17,11 @@ var Button = require('../button');
 // ---- React Class ----
 module.exports = React.createClass( {
 
-  displayName: 'ButtonsDemo',
+  displayName: 'StandardButtonsDemo',
 
   render: function() {
     return (
-      <DemoArea introTitle="Buttons">
+      <DemoArea introTitle="Standard Buttons">
         <DemoAreaFlex>
           <Button disableEvents={ true }>Label</Button>
           <DemoAreaLabel>Standard Button</DemoAreaLabel>
