@@ -11,6 +11,7 @@ var React = require('react');
 var MainHeader = require('./mainHeader');
 var StandardButtonsDemo = require('./demos/standardButtons');
 var PrimaryButtonsDemo = require('./demos/primaryButtons');
+var TextInputsDemo = require('./demos/textInputs');
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -18,7 +19,8 @@ var appStyles = {
   fontFamily: projectVars.fonts.sans
 };
 var demosStyles = {
-  padding: '0 56px'
+  padding: '0 56px 56px',
+  overflow: 'hidden'
 };
 
 // ---- React Class ----
@@ -33,6 +35,7 @@ module.exports = React.createClass( {
         <div style={ demosStyles }>
           <StandardButtonsDemo />
           <PrimaryButtonsDemo />
+          <TextInputsDemo />
         </div>
       </div>
     );

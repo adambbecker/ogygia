@@ -22,13 +22,11 @@ var headingStyles = {
   main: {
     display: 'inline-block',
     marginRight: '3px',
-    color: '#2E4453',
-    fontWeight: 'inherit'
+    color: '#2E4453'
   },
   secondary: {
     display: 'inline-block',
-    color: '#87A6BC',
-    fontWeight: 'inherit'
+    color: '#87A6BC'
   }
 };
 
