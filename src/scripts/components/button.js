@@ -33,6 +33,10 @@ var buttonStyles = {
     borderColor: '#A8BECE',
     boxShadow: '0 1px 0 #A8BECE inset'
   },
+  baseFocus: {
+    borderColor: projectVars.colors.blueMedium,
+    boxShadow: '0 1px 0 ' + projectVars.colors.blueMedium + ', 0 0 0 2px #78DCFA'
+  },
   baseDisabled: {
     backgroundColor: '#FFFFFF',
     color: '#E9EFF3',
@@ -51,6 +55,10 @@ var buttonStyles = {
   primaryActive: {
     borderColor: '#005082',
     boxShadow: '0 1px 0 #005082 inset'
+  },
+  primaryFocus: {
+    borderColor: '#005082',
+    boxShadow: '0 1px 0 #005082, 0 0 0 2px #78DCFA'
   },
   primaryDisabled: {
     backgroundColor: '#B2EBF9',
@@ -78,10 +86,16 @@ module.exports = React.createClass( {
     this.setState( { hover: ! this.state.hover } );
   },
 
+  handleFocusBlur: function() {
+    // Turing off focus handler because of odd interaction with active
+    // this.setState( { focus: ! this.state.focus } );
+  },
+
   render: function() {
     var styles = merge(
       buttonStyles.base,
       ( this.state.hover || this.props.hover ) && buttonStyles.baseHover,
+      ( this.state.focus || this.props.focus ) && buttonStyles.baseFocus,
       ( this.state.active || this.props.active ) && buttonStyles.baseActive,
       this.props.disabled && buttonStyles.baseDisabled,
       this.props.primary && buttonStyles.primary,
@@ -96,7 +110,7 @@ module.exports = React.createClass( {
       );
     } else {
       return (
-        <button style={ styles } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave }>{ this.props.children }</button>
+        <button style={ styles } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }>{ this.props.children }</button>
       );
     }
   }
