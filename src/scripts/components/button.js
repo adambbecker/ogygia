@@ -46,7 +46,8 @@ var buttonStyles = {
   primary: {
     color: '#FFFFFF',
     backgroundColor: projectVars.colors.blueMedium,
-    borderColor: '#0087BE'
+    borderColor: '#0087BE',
+    boxShadow: '0 1px 0 #0087BE'
   },
   primaryHover: {
     borderColor: '#005082',
@@ -68,7 +69,7 @@ var buttonStyles = {
 };
 
 // ---- React Class ----
-module.exports = React.createClass( {
+var buttonClass = React.createClass( {
 
   displayName: 'Button',
 
@@ -107,7 +108,7 @@ module.exports = React.createClass( {
 
     if ( this.props.disableEvents ) {
       return (
-        <button style={ styles }>{ this.props.children }</button>
+        <button style={ styles } disabled="disabled">{ this.props.children }</button>
       );
     } else {
       return (
@@ -117,3 +118,9 @@ module.exports = React.createClass( {
   }
 
 } );
+
+// ==== Module Export ====
+module.exports = {
+  styles: buttonStyles,
+  reactClass: buttonClass
+};

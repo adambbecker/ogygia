@@ -102,10 +102,11 @@ input[type=button],
 input[type=submit],
 input[type=file],
 button {cursor: pointer;}
+button[disabled] {cursor: default;}
 
 /* Webkit browsers add a 2px margin outside the chrome of form elements */
 button, input, select, textarea {margin: 0;}
-button:active, button:focus, input:active, input:focus { outline: none; }
+button:active, button:focus, input:active, input:focus, textarea:active, textarea:focus { outline: none; }
 
 /* make buttons play nice in IE */
 button,

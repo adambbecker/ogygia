@@ -12,7 +12,7 @@ var DemoArea = require('../demoArea');
 var DemoAreaSecHeading = require('../demoAreaSecHeading');
 var DemoAreaFlex = require('../demoAreaFlex');
 var DemoAreaLabel = require('../demoAreaLabel');
-var Button = require('../button');
+var Button = require('../button').reactClass;
 
 // ---- React Class ----
 module.exports = React.createClass( {
