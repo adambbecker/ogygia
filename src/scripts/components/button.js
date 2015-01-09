@@ -1,7 +1,7 @@
 // =========================================
-// App.js
+// Button.js
 // ----
-// Main app js that gets rendered in main.js
+// Main button component
 // =========================================
 
 // ---- External Dependencies ----
