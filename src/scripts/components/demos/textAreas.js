@@ -1,7 +1,7 @@
 // ===========================================
-// TextInputs.js
+// TextAreas.js
 // ----
-// Demo section for the basic text inputs
+// Demo section for the basic text areas
 // ===========================================
 
 // ---- External Dependencies ----
@@ -12,37 +12,34 @@ var DemoArea = require('../demoArea');
 var DemoAreaSecHeading = require('../demoAreaSecHeading');
 var DemoAreaFlex = require('../demoAreaFlex');
 var DemoAreaLabel = require('../demoAreaLabel');
-var TextInput = require('../textInput').reactClass;
-var Label = require('../label');
+var TextArea = require('../textArea').reactClass;
 
 // ---- React Class ----
 module.exports = React.createClass( {
 
-  displayName: 'TextInputsDemo',
+  displayName: 'TextAreasDemo',
 
   render: function() {
     return (
-      <DemoArea introTitle="Text Inputs">
+      <DemoArea introTitle="Textareas" size="medium">
         <DemoAreaFlex>
-          <TextInput placeholder="Placeholder Text" disableEvents={ true } />
+          <TextArea placeholder="Placeholder Text" disableEvents={ true } />
           <DemoAreaLabel>Default</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput hover={ true } disableEvents={ true } />
+          <TextArea hover={ true } disableEvents={ true } />
           <DemoAreaLabel>Hover</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput focus={ true } disableEvents={ true } />
+          <TextArea focus={ true } disableEvents={ true } />
           <DemoAreaLabel>Focus</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput disabled={ true } disableEvents={ true } />
+          <TextArea disabled={ true } disableEvents={ true } placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet." />
           <DemoAreaLabel>Disabled</DemoAreaLabel>
         </DemoAreaFlex>
-        <Label required={ true }>Label Text</Label>
-        <TextInput placeholder="Placeholder Text" disableEvents={ true } />
         <DemoAreaSecHeading primaryText="Demo" secondaryText="Fully enabled example" />
-        <TextInput placeholder="Placeholder Text" />
+        <TextArea placeholder="Placeholder Text" />
       </DemoArea>
     )
   }

@@ -1,7 +1,7 @@
 // =========================================
 // TextInput.js
 // ----
-// Main input (type for now) component
+// Main input (type text for now) component
 // =========================================
 
 // ---- External Dependencies ----
@@ -38,7 +38,7 @@ var inputStyles = {
 };
 
 // ---- React Class ----
-module.exports = React.createClass( {
+var inputClass = React.createClass( {
 
   displayName: 'TextInput',
 
@@ -77,3 +77,9 @@ module.exports = React.createClass( {
   }
 
 } );
+
+// ==== Module Export ====
+module.exports = {
+  styles: inputStyles,
+  reactClass: inputClass
+};
