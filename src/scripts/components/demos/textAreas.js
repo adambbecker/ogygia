@@ -31,8 +31,8 @@ module.exports = React.createClass( {
           <DemoAreaLabel>Hover</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextArea focus={ true } disableEvents={ true } />
-          <DemoAreaLabel>Focus</DemoAreaLabel>
+          <TextArea focus={ true } disableEvents={ true }>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet.</TextArea>
+          <DemoAreaLabel>Active</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
           <TextArea disabled={ true } disableEvents={ true } placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet." />

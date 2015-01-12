@@ -47,11 +47,11 @@ var textAreaClass = React.createClass( {
 
     if ( this.props.disableEvents ) {
       return (
-        <textarea style={ styles } rows="3" placeholder={ this.props.placeholder } disabled="disabled"></textarea>
+        <textarea style={ styles } rows="3" placeholder={ this.props.placeholder } disabled="disabled">{ this.props.children }</textarea>
       );
     } else {
       return (
-        <textarea style={ styles } rows="3" placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }></textarea>
+        <textarea style={ styles } rows="3" placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }>{ this.props.children }</textarea>
       );
     }
   }

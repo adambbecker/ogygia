@@ -32,8 +32,8 @@ module.exports = React.createClass( {
           <DemoAreaLabel>Hover</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput focus={ true } disableEvents={ true } />
-          <DemoAreaLabel>Focus</DemoAreaLabel>
+          <TextInput focus={ true } value="Text Input" disableEvents={ true } />
+          <DemoAreaLabel>Active</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
           <TextInput disabled={ true } disableEvents={ true } />

@@ -67,11 +67,11 @@ var inputClass = React.createClass( {
 
     if ( this.props.disableEvents ) {
       return (
-        <input style={ styles } type="text" placeholder={ this.props.placeholder } disabled="disabled" />
+        <input style={ styles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } disabled="disabled" />
       );
     } else {
       return (
-        <input style={ styles } type="text" placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } />
+        <input style={ styles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } />
       );
     }
   }
