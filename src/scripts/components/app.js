@@ -13,6 +13,7 @@ var StandardButtonsDemo = require('./demos/standardButtons');
 var PrimaryButtonsDemo = require('./demos/primaryButtons');
 var TextInputsDemo = require('./demos/textInputs');
 var TextAreasDemo = require('./demos/textAreas');
+var FormValidationDemo = require('./demos/formValidation');
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -38,6 +39,7 @@ module.exports = React.createClass( {
           <PrimaryButtonsDemo />
           <TextInputsDemo />
           <TextAreasDemo />
+          <FormValidationDemo />
         </div>
       </div>
     );

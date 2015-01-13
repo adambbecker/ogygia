@@ -73,6 +73,12 @@ var buttonClass = React.createClass( {
 
   displayName: 'Button',
 
+  getDefaultProps: function() {
+    return {
+      type: 'submit'
+    }
+  },
+
   getInitialState: function() {
     return {
       active: false
@@ -103,16 +109,17 @@ var buttonClass = React.createClass( {
       this.props.primary && ( this.state.hover || this.props.hover ) && buttonStyles.primaryHover,
       this.props.primary && ( this.state.focus || this.props.focus ) && buttonStyles.primaryFocus,
       this.props.primary && ( this.state.active || this.props.active ) && buttonStyles.primaryActive,
-      this.props.primary && this.props.disabled && buttonStyles.primaryDisabled
+      this.props.primary && this.props.disabled && buttonStyles.primaryDisabled,
+      this.props.style
     );
 
     if ( this.props.disableEvents ) {
       return (
-        <button style={ styles } disabled="disabled">{ this.props.children }</button>
+        <button style={ styles } type={ this.props.type } disabled="disabled">{ this.props.children }</button>
       );
     } else {
       return (
-        <button style={ styles } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }>{ this.props.children }</button>
+        <button style={ styles } type={ this.props.type } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }>{ this.props.children }</button>
       );
     }
   }

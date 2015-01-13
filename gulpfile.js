@@ -11,8 +11,8 @@ gulp.task( 'browserify' , function() {
 } );
 
 gulp.task( 'styles', function() {
-  gulp.src( [ 'src/styles/reset.css' ] )
-    .pipe( concat( 'reset.css' ) )
+  gulp.src( 'src/styles/*.css' )
+    .pipe( concat( 'style.css' ) )
     .pipe( cssmin() )
     .pipe( gulp.dest( 'dist/styles' ) );
 } );

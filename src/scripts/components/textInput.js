@@ -8,12 +8,14 @@
 var React = require( 'react' );
 var merge = require( '../lib/merge' );
 
+// ---- Internal Dependencies ----
+var InputFeedback = require( './inputFeedback' ).reactClass;
+
 // ---- Styles ----
 var projectVars = require( '../vars' );
 var inputStyles = {
   base: {
     width: '100%',
-    maxWidth: '200px',
     fontFamily: projectVars.fonts.sans,
     fontSize: '16px',
     lineHeight: '24px',
@@ -34,7 +36,13 @@ var inputStyles = {
     backgroundColor: '#FFFFFF',
     borderColor: '#E9EFF3',
     color: '#E9EFF3'
+  },
+  error: {
+    borderColor: projectVars.colors.error
   }
+};
+var demoContainerStyles = {
+  maxWidth: '200px'
 };
 
 // ---- React Class ----
@@ -45,7 +53,9 @@ var inputClass = React.createClass( {
   getInitialState: function() {
     return {
       hover: false,
-      focus: false
+      focus: false,
+      error: this.props.error,
+      success: this.props.success
     };
   },
 
@@ -57,21 +67,40 @@ var inputClass = React.createClass( {
     this.setState( { focus: ! this.state.focus } );
   },
 
+  getFeedback: function() {
+    if ( this.state.error ) {
+      return ( <InputFeedback error={ this.state.error }>{ this.state.error }</InputFeedback> );
+    } else if ( this.state.success ) {
+      return ( <InputFeedback success={ this.state.success }>{ this.state.success }</InputFeedback> );
+    }
+  },
+
   render: function() {
-    var styles = merge(
+    var renderedInputStyles = merge(
       inputStyles.base,
       ( this.state.hover || this.props.hover ) && inputStyles.hover,
       ( this.state.focus || this.props.focus ) && inputStyles.focus,
-      this.props.disabled && inputStyles.disabled
+      this.props.disabled && inputStyles.disabled,
+      ( this.state.error || this.props.error ) && inputStyles.error
+    );
+    var renderedContainerStyles = merge(
+      demoContainerStyles,
+      this.props.containerStyle
     );
 
     if ( this.props.disableEvents ) {
       return (
-        <input style={ styles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } disabled="disabled" />
+        <div style={ renderedContainerStyles }>
+          <input style={ renderedInputStyles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } disabled="disabled" />
+          { this.getFeedback() }
+        </div>
       );
     } else {
       return (
-        <input style={ styles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } />
+        <div style={ renderedContainerStyles }>
+          <input style={ renderedInputStyles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } />
+          { this.getFeedback() }
+        </div>
       );
     }
   }
