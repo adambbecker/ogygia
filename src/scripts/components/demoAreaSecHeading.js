@@ -9,6 +9,7 @@ var React = require( 'react' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
+var projectVars = require( '../vars' );
 var headingStyles = {
   base: {
     fontSize: '11px',
@@ -16,17 +17,18 @@ var headingStyles = {
     lineHeight: '16px',
     textTransform: 'uppercase',
     borderBottom: 'solid 1px #C8D7E1',
+    borderTop: 'none',
     marginBottom: '15px',
     marginTop: '22px'
   },
   main: {
     display: 'inline-block',
     marginRight: '3px',
-    color: '#2E4453'
+    color: projectVars.colors.textDark
   },
   secondary: {
     display: 'inline-block',
-    color: '#87A6BC'
+    color: projectVars.colors.textLight
   }
 };
 
@@ -44,9 +46,15 @@ module.exports = React.createClass( {
       baseStyles.marginTop = 0;
     }
 
-    return (
-      <h3 style={ baseStyles }>{ primaryText }{ secondaryText }</h3>
-    );
+    if ( ! primaryText ) {
+      return (
+        <hr style={ baseStyles } />
+      );
+    } else {
+      return (
+        <h3 style={ baseStyles }>{ primaryText }{ secondaryText }</h3>
+      );
+    }
   }
 
 } );

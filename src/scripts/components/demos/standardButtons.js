@@ -42,8 +42,11 @@ module.exports = React.createClass( {
           <Button disabled={ true } disableEvents={ true }>Label</Button>
           <DemoAreaLabel>Standard Button, Disabled</DemoAreaLabel>
         </DemoAreaFlex>
-        <DemoAreaSecHeading primaryText="Demo" secondaryText="Fully enabled example" />
-        <Button>Label</Button>
+        <DemoAreaSecHeading />
+        <DemoAreaFlex>
+          <Button>Label</Button>
+          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
+        </DemoAreaFlex>
       </DemoArea>
     )
   }

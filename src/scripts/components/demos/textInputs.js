@@ -41,8 +41,11 @@ module.exports = React.createClass( {
         </DemoAreaFlex>
         <Label required={ true }>Label Text</Label>
         <TextInput placeholder="Placeholder Text" disableEvents={ true } />
-        <DemoAreaSecHeading primaryText="Demo" secondaryText="Fully enabled example" />
-        <TextInput placeholder="Placeholder Text" />
+        <DemoAreaSecHeading />
+        <DemoAreaFlex>
+          <TextInput placeholder="Placeholder Text" />
+          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
+        </DemoAreaFlex>
       </DemoArea>
     )
   }

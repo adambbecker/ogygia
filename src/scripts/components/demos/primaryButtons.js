@@ -22,28 +22,31 @@ module.exports = React.createClass( {
   render: function() {
     return (
       <DemoArea introTitle="Primary Buttons">
-      <DemoAreaFlex>
-        <Button disableEvents={ true } primary={ true }>Label</Button>
-        <DemoAreaLabel>Primary Button</DemoAreaLabel>
-      </DemoAreaFlex>
-      <DemoAreaFlex>
-        <Button hover={ true } disableEvents={ true } primary={ true }>Label</Button>
-        <DemoAreaLabel>Primary Button, Hover</DemoAreaLabel>
-      </DemoAreaFlex>
-      <DemoAreaFlex>
-        <Button active={ true } disableEvents={ true } primary={ true }>Label</Button>
-        <DemoAreaLabel>Primary Button, Active</DemoAreaLabel>
-      </DemoAreaFlex>
-      <DemoAreaFlex>
-        <Button focus={ true } disableEvents={ true } primary={ true }>Label</Button>
-        <DemoAreaLabel>Primary Button, Focus</DemoAreaLabel>
-      </DemoAreaFlex>
-      <DemoAreaFlex>
-        <Button disabled={ true } disableEvents={ true } primary={ true }>Label</Button>
-        <DemoAreaLabel>Primary Button, Disabled</DemoAreaLabel>
-      </DemoAreaFlex>
-        <DemoAreaSecHeading primaryText="Demo" secondaryText="Fully enabled example" />
-        <Button primary={ true }>Label</Button>
+        <DemoAreaFlex>
+          <Button disableEvents={ true } primary={ true }>Label</Button>
+          <DemoAreaLabel>Primary Button</DemoAreaLabel>
+        </DemoAreaFlex>
+        <DemoAreaFlex>
+          <Button hover={ true } disableEvents={ true } primary={ true }>Label</Button>
+          <DemoAreaLabel>Primary Button, Hover</DemoAreaLabel>
+        </DemoAreaFlex>
+        <DemoAreaFlex>
+          <Button active={ true } disableEvents={ true } primary={ true }>Label</Button>
+          <DemoAreaLabel>Primary Button, Active</DemoAreaLabel>
+        </DemoAreaFlex>
+        <DemoAreaFlex>
+          <Button focus={ true } disableEvents={ true } primary={ true }>Label</Button>
+          <DemoAreaLabel>Primary Button, Focus</DemoAreaLabel>
+        </DemoAreaFlex>
+        <DemoAreaFlex>
+          <Button disabled={ true } disableEvents={ true } primary={ true }>Label</Button>
+          <DemoAreaLabel>Primary Button, Disabled</DemoAreaLabel>
+        </DemoAreaFlex>
+        <DemoAreaSecHeading />
+        <DemoAreaFlex>
+          <Button primary={ true }>Label</Button>
+          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
+        </DemoAreaFlex>
       </DemoArea>
     )
   }

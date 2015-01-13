@@ -38,8 +38,11 @@ module.exports = React.createClass( {
           <TextArea disabled={ true } disableEvents={ true } placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet." />
           <DemoAreaLabel>Disabled</DemoAreaLabel>
         </DemoAreaFlex>
-        <DemoAreaSecHeading primaryText="Demo" secondaryText="Fully enabled example" />
-        <TextArea placeholder="Placeholder Text" />
+        <DemoAreaSecHeading />
+        <DemoAreaFlex>
+          <TextArea placeholder="Placeholder Text" />
+          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
+        </DemoAreaFlex>
       </DemoArea>
     )
   }
