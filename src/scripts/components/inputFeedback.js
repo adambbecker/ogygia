@@ -16,7 +16,8 @@ var feedbackStyles = {
     width: '100%',
     fontSize: '11px',
     lineHeight: '14px',
-    padding: '10px 15px'
+    padding: '10px 15px',
+    transformOrigin: 'top'
   },
   error: {
     color: '#FFFFFF',
@@ -39,9 +40,64 @@ var feedbackClass = React.createClass( {
 
   displayName: 'InputFeedback',
 
+  getDefaultProps: function() {
+    return {
+      animate: true
+    }
+  },
+
   getInitialState: function() {
     return {
-      error: false
+      error: false,
+      animationPhase: 'enter'
+    }
+  },
+
+  componentDidMount: function() {
+    if ( this.props.animate ) {
+      var bgAnimationIn = new Animation(
+        this.getDOMNode(),
+        [
+          { opacity: 0, transform: 'scaleY(0)' },
+          { opacity: 1, transform: 'scaleY(1)' }
+        ],
+        {
+          duration: 200,
+          easing: 'cubic-bezier(.22,.67,.52,.92)',
+          fill: 'both'
+        }
+      );
+
+      var messageAnimationIn = new Animation(
+        this.refs.message.getDOMNode(),
+        [
+          { opacity: 0, transform: 'translateX(18px)' },
+          { opacity: 1, transform: 'translateX(0)' }
+          ],
+        {
+          duration: 200,
+          delay: 100,
+          easing: 'cubic-bezier(.22,.67,.52,.92)',
+          fill: 'both'
+        }
+      );
+
+      var iconAnimationIn = new Animation(
+        this.refs.icon.getDOMNode(),
+        [
+          { opacity: 0, transform: 'scale(0)' },
+          { opacity: 1, transform: 'scale(1)' }
+          ],
+        {
+          duration: 300,
+          delay: 50,
+          easing: 'cubic-bezier(0.190, 0.915, 0.490, 1.210)',
+          fill: 'both'
+        }
+      );
+
+      this.animationIn = new AnimationGroup( [ bgAnimationIn, messageAnimationIn, iconAnimationIn ] );
+      document.timeline.play( this.animationIn );
     }
   },
 
@@ -52,20 +108,20 @@ var feedbackClass = React.createClass( {
       'genericon-checkmark': this.state.success || this.props.success
     } );
 
-    return ( <span className={ genericonClass } style={ feedbackStyles.icon }></span> );
+    return ( <span className={ genericonClass } style={ feedbackStyles.icon } ref="icon"></span> );
   },
 
   render: function() {
-    var styles = merge(
+    var renderedStyles = merge(
       feedbackStyles.base,
       ( this.state.error || this.props.error ) && feedbackStyles.error,
       ( this.state.success || this.props.success ) && feedbackStyles.success
     );
 
     return (
-      <div style={ styles }>
+      <div style={ renderedStyles }>
         { this.getIcon() }
-        <p style={ feedbackStyles.message }>{ this.props.children }</p>
+        <p style={ feedbackStyles.message } ref="message">{ this.props.children }</p>
       </div>
     )
   }
