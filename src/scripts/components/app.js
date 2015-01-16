@@ -35,11 +35,11 @@ module.exports = React.createClass( {
       <div style={ appStyles }>
         <MainHeader />
         <div style={ demosStyles }>
-          <StandardButtonsDemo />
-          <PrimaryButtonsDemo />
           <TextInputsDemo />
           <TextAreasDemo />
           <FormValidationDemo />
+          <StandardButtonsDemo />
+          <PrimaryButtonsDemo />
         </div>
       </div>
     );
