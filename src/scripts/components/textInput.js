@@ -24,7 +24,8 @@ var inputStyles = {
     backgroundColor: '#F3F6F8',
     borderStyle: 'solid',
     borderWidth: '1px',
-    borderColor: '#C8D7E1'
+    borderColor: '#C8D7E1',
+    transition: 'border-color 0.2s cubic-bezier(.22,.67,.52,.92)'
   },
   hover: {
     borderColor: '#A8BECE'
@@ -50,12 +51,19 @@ var inputClass = React.createClass( {
 
   displayName: 'TextInput',
 
+  getDefaultProps: function() {
+    return {
+      disableEvents: false
+    };
+  },
+
   getInitialState: function() {
     return {
       hover: false,
       focus: false,
       error: this.props.error,
-      success: this.props.success
+      success: this.props.success,
+      value: this.props.value
     };
   },
 
@@ -67,15 +75,21 @@ var inputClass = React.createClass( {
     this.setState( { focus: ! this.state.focus } );
   },
 
+  handleChange: function( e ) {
+    this.setState( { value: e.target.value } );
+  },
+
   getFeedback: function() {
     if ( this.state.error ) {
-      return ( <InputFeedback error={ this.state.error }>{ this.state.error }</InputFeedback> );
+      return ( <InputFeedback error={ this.state.error } animate={ ! this.props.disableEvents }>{ this.state.error }</InputFeedback> );
     } else if ( this.state.success ) {
-      return ( <InputFeedback success={ this.state.success }>{ this.state.success }</InputFeedback> );
+      return ( <InputFeedback success={ this.state.success } animate={ ! this.props.disableEvents }>{ this.state.success }</InputFeedback> );
     }
   },
 
   render: function() {
+    var value = this.state.value;
+
     var renderedInputStyles = merge(
       inputStyles.base,
       ( this.state.hover || this.props.hover ) && inputStyles.hover,
@@ -91,14 +105,14 @@ var inputClass = React.createClass( {
     if ( this.props.disableEvents ) {
       return (
         <div style={ renderedContainerStyles }>
-          <input style={ renderedInputStyles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } disabled="disabled" />
+          <input style={ renderedInputStyles } type="text" value={ value } placeholder={ this.props.placeholder } disabled="disabled" />
           { this.getFeedback() }
         </div>
       );
     } else {
       return (
         <div style={ renderedContainerStyles }>
-          <input style={ renderedInputStyles } type="text" value={ this.props.value } placeholder={ this.props.placeholder } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } />
+          <input style={ renderedInputStyles } ref="textInput" type="text" value={ value } placeholder={ this.props.placeholder } onChange={ this.handleChange } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } />
           { this.getFeedback() }
         </div>
       );

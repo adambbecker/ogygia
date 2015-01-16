@@ -20,6 +20,12 @@ gulp.task( 'styles', function() {
 gulp.task( 'copy', function() {
   gulp.src( 'src/index.html' )
     .pipe( gulp.dest( 'dist' ) );
+
+  gulp.src( 'src/scripts/lib/web-animations-next.min.js' )
+    .pipe( gulp.dest( 'dist/scripts' ) );
+
+  gulp.src( 'src/scripts/lib/web-animations-next.min.js.map' )
+    .pipe( gulp.dest( 'dist/scripts' ) );
 } );
 
 gulp.task( 'watch' , function() {
