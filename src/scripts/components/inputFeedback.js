@@ -17,6 +17,7 @@ var feedbackStyles = {
     fontSize: '11px',
     lineHeight: '14px',
     padding: '10px 15px',
+    transition: 'background-color 0.2s cubic-bezier(.22,.67,.52,.92)',
     transformOrigin: 'top'
   },
   error: {
@@ -24,7 +25,8 @@ var feedbackStyles = {
     backgroundColor: projectVars.colors.error
   },
   success: {
-    color: projectVars.colors.success
+    color: projectVars.colors.success,
+    backgroundColor: 'transparent'
   },
   icon: {
     float: 'left',
@@ -49,7 +51,7 @@ var feedbackClass = React.createClass( {
   getInitialState: function() {
     return {
       error: false,
-      animationPhase: 'enter'
+      visible: true
     }
   },
 
@@ -73,7 +75,7 @@ var feedbackClass = React.createClass( {
         [
           { opacity: 0, transform: 'translateX(18px)' },
           { opacity: 1, transform: 'translateX(0)' }
-          ],
+        ],
         {
           duration: 200,
           delay: 100,
@@ -87,7 +89,7 @@ var feedbackClass = React.createClass( {
         [
           { opacity: 0, transform: 'scale(0)' },
           { opacity: 1, transform: 'scale(1)' }
-          ],
+        ],
         {
           duration: 300,
           delay: 50,
@@ -98,6 +100,103 @@ var feedbackClass = React.createClass( {
 
       this.animationIn = new AnimationGroup( [ bgAnimationIn, messageAnimationIn, iconAnimationIn ] );
       document.timeline.play( this.animationIn );
+    }
+  },
+
+  componentWillUpdate: function( nextProps, nextState ) {
+    // If animation out is playing:
+    //
+    // at the end visible state will be set to false,
+    // so animation should play in
+    if ( this.state.visible && ! nextState.visible ) {
+      var messageAnimationIn = new Animation(
+        this.refs.message.getDOMNode(),
+        [
+          { opacity: 0, transform: 'translateX(18px)' },
+          { opacity: 1, transform: 'translateX(0)' }
+        ],
+        {
+          duration: 200,
+          delay: 50,
+          easing: 'cubic-bezier(.22,.67,.52,.92)',
+          fill: 'both'
+        }
+      );
+
+      var iconAnimationIn = new Animation(
+        this.refs.icon.getDOMNode(),
+        [
+          { opacity: 0, transform: 'scale(0)' },
+          { opacity: 1, transform: 'scale(1)' }
+        ],
+        {
+          duration: 300,
+          delay: 0,
+          easing: 'cubic-bezier(0.190, 0.915, 0.490, 1.210)',
+          fill: 'both'
+        }
+      );
+
+      var feedbackTypeAnimationIn = document.timeline.play( new AnimationGroup( [ messageAnimationIn, iconAnimationIn ] ) );
+      feedbackTypeAnimationIn.onfinish = function() {
+        this.setState( {
+          visible: true
+        } );
+      }.bind( this );
+    }
+  },
+
+  animateMessageOut: function() {
+    var messageAnimationOut = new Animation(
+      this.refs.message.getDOMNode(),
+      [
+        { opacity: 1, transform: 'translateX(0)' },
+        { opacity: 0, transform: 'translateX(18px)' }
+      ],
+      {
+        duration: 200,
+        delay: 0,
+        easing: 'cubic-bezier(.22,.67,.52,.92)',
+        fill: 'both'
+      }
+    );
+
+    var iconAnimationOut = new Animation(
+      this.refs.icon.getDOMNode(),
+      [
+        { opacity: 1, transform: 'scale(1)' },
+        { opacity: 0, transform: 'scale(0)' }
+      ],
+      {
+        duration: 200,
+        delay: 0,
+        easing: 'ease-out',
+        fill: 'both'
+      }
+    );
+
+    var feedbackTypeAnimationOut = document.timeline.play( new AnimationGroup( [ messageAnimationOut, iconAnimationOut ] ) );
+    feedbackTypeAnimationOut.onfinish = function() {
+      this.setState( {
+        visible: false
+      } );
+    }.bind( this );
+  },
+
+  shouldComponentUpdate: function( nextProps, nextState ) {
+    if ( this.props.error === nextProps.error || this.props.success === nextProps.success ) {
+      if ( this.state.visible === nextState.visible ) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      if ( this.state.visible ) {
+        this.animateMessageOut();
+        return false;
+      } else {
+        return true;
+      }
     }
   },
 
