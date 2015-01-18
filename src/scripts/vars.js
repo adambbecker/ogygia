@@ -4,7 +4,7 @@
 // Contains base style variables
 // =========================================
 
-module.exports = {
+var projectsVars = {
   colors: {
     blueWordPress: '#0085be',
     blueMedium: '#00AADC',
@@ -18,3 +18,5 @@ module.exports = {
     serif: "'Merriweather', serif"
   }
 };
+
+module.exports = projectsVars;
