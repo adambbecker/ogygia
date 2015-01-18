@@ -9,7 +9,8 @@ var React = require('react');
 
 // ---- Internal Dependencies ----
 var MainHeader = require('./mainHeader');
-var TypographyDemo = require('./demos/typography');
+var TypographyDemo = require('./demos/typography').reactClass;
+var MetricsDemo = require('./demos/metrics');
 var StandardButtonsDemo = require('./demos/standardButtons');
 var PrimaryButtonsDemo = require('./demos/primaryButtons');
 var TextInputsDemo = require('./demos/textInputs');
@@ -37,6 +38,7 @@ module.exports = React.createClass( {
         <MainHeader />
         <div style={ demosStyles }>
           <TypographyDemo />
+          <MetricsDemo />
           <TextInputsDemo />
           <TextAreasDemo />
           <FormValidationDemo />

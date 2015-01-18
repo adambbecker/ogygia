@@ -66,7 +66,7 @@ var typographyStyles = {
 };
 
 // ---- React Class ----
-module.exports = React.createClass( {
+var typographyClass = React.createClass( {
 
   displayName: 'TypographyDemo',
 
@@ -90,3 +90,9 @@ module.exports = React.createClass( {
   }
 
 } );
+
+// ==== Module Export ====
+module.exports = {
+  styles: typographyStyles,
+  reactClass: typographyClass
+};
