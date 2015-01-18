@@ -201,13 +201,13 @@ var feedbackClass = React.createClass( {
   },
 
   getIcon: function() {
-    var genericonClass = React.addons.classSet( {
-      'genericon': true,
-      'genericon-spam': this.state.error || this.props.error,
-      'genericon-checkmark': this.state.success || this.props.success
+    var iconClass = React.addons.classSet( {
+      'noticon': true,
+      'noticon-spam': this.state.error || this.props.error,
+      'noticon-checkmark': this.state.success || this.props.success
     } );
 
-    return ( <span className={ genericonClass } style={ feedbackStyles.icon } ref="icon"></span> );
+    return ( <span className={ iconClass } style={ feedbackStyles.icon } ref="icon"></span> );
   },
 
   render: function() {
