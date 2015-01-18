@@ -24,7 +24,7 @@ module.exports = React.createClass( {
     return (
       <DemoArea introTitle="Metrics" size="large">
         <DemoAreaSecHeading primaryText="Widest" secondaryText="656px Wide" firstChild={ true } />
-        <PostCard />
+        <PostCard size="small" />
       </DemoArea>
     );
   }

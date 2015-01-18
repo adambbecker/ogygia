@@ -23,7 +23,7 @@ var attributionStyles = {
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    marginBottom: '11px'
+    marginBottom: '12px'
   },
   avatar: {
     display: 'inline-block',
