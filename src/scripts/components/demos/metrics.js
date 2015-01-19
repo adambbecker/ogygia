@@ -45,17 +45,24 @@ module.exports = React.createClass( {
   },
 
   getButtonText: function() {
-    var buttonText;
+    var iconClass = 'noticon noticon-',
+      iconStyle = {
+        marginRight: '8px'
+      },
+      buttonText;
 
     if ( this.state.animationState === 'playing' ) {
-      buttonText = 'Grid Animating...';
+      iconClass += 'ellipsis';
+      buttonText = 'Animating Grid...';
     } else if ( this.state.gridVisible ) {
-      buttonText = 'Hide Grids';
+      iconClass += 'hide';
+      buttonText = 'Hide Grid';
     } else {
-      buttonText = 'Show Grids';
+      iconClass += 'show';
+      buttonText = 'Show Grid';
     }
 
-    return buttonText;
+    return ( <span><span className={ iconClass } style={ iconStyle }></span><span>{ buttonText }</span></span> );
   },
 
   handleGridClick: function() {
