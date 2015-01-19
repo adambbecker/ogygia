@@ -11,15 +11,16 @@ var merge = require( '../../lib/merge' );
 // ---- Internal Dependencies ----
 var PostAttribution = require( './postAttribution' ).reactClass;
 var PostMetaItem = require( './postMetaItem' ).reactClass;
+var PostBlueprint = require( './postBlueprint' );
 
 // ---- Styles ----
 var projectVars = require( '../../vars' );
 var typographyStyles = require( '../demos/typography' ).styles;
 var cardStyles = {
   base: {
+    position: 'relative',
     width: '100%',
     maxWidth: '656px',
-    backgroundColor: '#FFFFFF',
     padding: '16px',
     border: 'solid 1px #C8D7E1'
   },
@@ -99,6 +100,7 @@ var cardClass = React.createClass( {
 
     return (
       <article style={ renderedBaseStyles }>
+        <PostBlueprint ref="blueprint" />
         <PostAttribution avatarURL={ this.props.author.avatarURL } name={ this.props.author.name } />
         <h3 style={ cardStyles.postTitle }>{ this.props.title }</h3>
         <p style={ cardStyles.postBody }>{ this.props.body }</p>

@@ -23,7 +23,8 @@ var buttonStyles = {
     border: 'solid 1px #C8D7E1',
     borderRadius: 3,
     boxShadow: '0 1px 0 #C8D7E1',
-    padding: '10px 34px'
+    padding: '10px 34px',
+    transition: 'background-color 0.2s ease'
   },
   baseHover: {
     borderColor: '#A8BECE',
@@ -119,7 +120,7 @@ var buttonClass = React.createClass( {
       );
     } else {
       return (
-        <button style={ styles } type={ this.props.type } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }>{ this.props.children }</button>
+        <button style={ styles } type={ this.props.type } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } onClick={ this.props.onClick }>{ this.props.children }</button>
       );
     }
   }
