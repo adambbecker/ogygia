@@ -35,25 +35,28 @@ var blueprintClass = React.createClass( {
     };
   },
 
-  horizontalAnimations: {},
-
-  verticalAnimations: {},
+  // horizontalAnimationsIn: {},
+  // horizontalAnimationsOut: {},
+  // verticalAnimationsIn: {},
+  // verticalAnimationsOut: {},
 
   componentDidMount: function() {
     this.animationHorizonatalsIn = new AnimationGroup( [] );
     this.animationVerticalsIn = new AnimationGroup( [] );
+
+    this.animationHorizonatalsOut = new AnimationGroup( [] );
+    this.animationVerticalsOut = new AnimationGroup( [] );
 
     this.getCurrentSize();
   },
 
   componentDidUpdate: function( prevProps, prevState ) {
     if ( this.state.horizonalLines !== prevState.horizonalLines || this.state.verticalLines !== prevState.verticalLines ) {
-      this.attachAnimationsIn();
-      // this.attachAnimationsOut();
+      this.attachAnimations();
     }
   },
 
-  attachAnimationsIn: function() {
+  attachAnimations: function() {
     var horizonalHalf = parseInt( this.state.horizonalLines / 2 ),
       verticalHalf = parseInt( this.state.verticalLines / 2 ),
       h, v;
@@ -61,16 +64,20 @@ var blueprintClass = React.createClass( {
     // horizonal
     for ( h = 0; h < this.state.horizonalLines; h++ ) {
       var refKey = 'horizonal-' + h;
+      var refDOMNode = this.refs[ refKey ].getDOMNode();
 
+      var endTransformPos = ( horizonalHalf - h ) * -8;
+
+      // in
       this.animationHorizonatalsIn.children[ h ] = new Animation(
-        this.refs[ refKey ].getDOMNode(),
+        refDOMNode,
         [
           {
             transform: 'scaleX(0)',
             opacity: '0'
           },
           {
-            transform: 'scaleX(1) translateY(' + ( ( horizonalHalf - h ) * -8 ) + 'px)',
+            transform: 'scaleX(1) translateY(' + endTransformPos + 'px)',
             opacity: '1'
           }
         ],
@@ -80,21 +87,45 @@ var blueprintClass = React.createClass( {
           fill: 'both'
         }
       );
+
+      // out
+      this.animationHorizonatalsOut.children[ h ] = new Animation(
+        refDOMNode,
+        [
+          {
+            transform: 'scaleX(1) translateY(' + endTransformPos + 'px)',
+            opacity: '1'
+          },
+          {
+            transform: 'scaleX(0) translateY(' + endTransformPos + 'px)',
+            opacity: '0'
+          }
+        ],
+        {
+          duration: 400 + ( Math.abs( h - horizonalHalf ) * 50 ),
+          easing: 'cubic-bezier(.22,.67,.52,.92)',
+          fill: 'both'
+        }
+      );
     }
 
     // vertical
     for ( v = 0; v < this.state.verticalLines; v++ ) {
       var refKey = 'vertical-' + v;
+      var refDOMNode = this.refs[ refKey ].getDOMNode();
 
+      var endTransformPos = ( verticalHalf - v ) * -8;
+
+      // in
       this.animationVerticalsIn.children[ v ] = new Animation(
-        this.refs[ refKey ].getDOMNode(),
+        refDOMNode,
         [
           {
             transform: 'scaleY(0)',
             opacity: '0'
           },
           {
-            transform: 'scaleY(1) translateX(' + ( ( verticalHalf - v ) * -8 ) + 'px)',
+            transform: 'scaleY(1) translateX(' + endTransformPos + 'px)',
             opacity: '1'
           }
         ],
@@ -104,11 +135,35 @@ var blueprintClass = React.createClass( {
           fill: 'both'
         }
       );
+
+      // out
+      this.animationVerticalsOut.children[ v ] = new Animation(
+        refDOMNode,
+        [
+          {
+            transform: 'scaleY(1) translateX(' + endTransformPos + 'px)',
+            opacity: '1'
+          },
+          {
+            transform: 'scaleY(0) translateX(' + endTransformPos + 'px)',
+            opacity: '0'
+          }
+        ],
+        {
+          duration: 400 + ( Math.abs( v - verticalHalf ) * 50 ),
+          easing: 'cubic-bezier(.22,.67,.52,.92)',
+          fill: 'both'
+        }
+      );
     }
 
-    // emphasis
+    // ---- emphasis ----
+
+    // horizonal (top)
     var horizonalEmphasisTopDOM = this.refs[ 'emphasis-horizontal-top' ].getDOMNode();
-    var horizonalEmphasisTop = new AnimationSequence( [
+    var horizonalEmphasisTopStopPos = ( horizonalHalf - 2 ) * -8;
+    // horizonal (top) - in
+    var horizonalEmphasisTopIn = new AnimationSequence( [
         new Animation(
           horizonalEmphasisTopDOM,
           [
@@ -135,7 +190,7 @@ var blueprintClass = React.createClass( {
               opacity: '0.3'
             },
             {
-              transform: 'scaleX(1) translateY(' + ( ( horizonalHalf - 2 ) * -8 ) + 'px)',
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisTopStopPos + 'px)',
               opacity: '1'
             }
           ],
@@ -146,9 +201,51 @@ var blueprintClass = React.createClass( {
           }
         )
       ] );
+      // horizonal (top) - out
+      var horizonalEmphasisTopOut = new AnimationSequence( [
+        new Animation(
+          horizonalEmphasisTopDOM,
+          [
+            {
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisTopStopPos + 'px)',
+              opacity: '1'
+            },
+            {
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisTopStopPos + 'px)',
+              opacity: '0.3'
+            }
+          ],
+          {
+            duration: 200,
+            easing: 'cubic-bezier(.22,.67,.52,.92)',
+            fill: 'both'
+          }
+        ),
+        new Animation(
+          horizonalEmphasisTopDOM,
+          [
+            {
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisTopStopPos + 'px)',
+              opacity: '0.3'
+            },
+            {
+              transform: 'scaleX(0) translateY(' + ( horizonalHalf * -8 ) + 'px)',
+              opacity: '0'
+            }
+          ],
+          {
+            duration: 400,
+            easing: 'cubic-bezier(.22,.67,.52,.92)',
+            fill: 'both'
+          }
+        )
+      ] );
 
+      // horizonal (bottom)
       var horizonalEmphasisBottomDOM = this.refs[ 'emphasis-horizontal-bottom' ].getDOMNode();
-      var horizonalEmphasisBottom = new AnimationSequence( [
+      var horizonalEmphasisBottomStopPos = ( horizonalHalf - 2 ) * 8;
+      // horizonal (bottom) - in
+      var horizonalEmphasisBottomIn = new AnimationSequence( [
           new Animation(
             horizonalEmphasisBottomDOM,
             [
@@ -175,7 +272,7 @@ var blueprintClass = React.createClass( {
                 opacity: '0.3'
               },
               {
-                transform: 'scaleX(1) translateY(' + ( ( horizonalHalf - 2 ) * 8 ) + 'px)',
+                transform: 'scaleX(1) translateY(' + horizonalEmphasisBottomStopPos + 'px)',
                 opacity: '1'
               }
             ],
@@ -186,9 +283,51 @@ var blueprintClass = React.createClass( {
             }
           )
       ] );
+      // horizonal (bottom) - out
+      var horizonalEmphasisBottomOut = new AnimationSequence( [
+        new Animation(
+          horizonalEmphasisBottomDOM,
+          [
+            {
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisBottomStopPos + 'px)',
+              opacity: '1'
+            },
+            {
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisBottomStopPos + 'px)',
+              opacity: '0.3'
+            }
+          ],
+          {
+            duration: 200,
+            easing: 'cubic-bezier(.22,.67,.52,.92)',
+            fill: 'both'
+          }
+        ),
+        new Animation(
+          horizonalEmphasisBottomDOM,
+          [
+            {
+              transform: 'scaleX(1) translateY(' + horizonalEmphasisBottomStopPos + 'px)',
+              opacity: '0.3'
+            },
+            {
+              transform: 'scaleX(0) translateY(' + ( horizonalHalf * 8 ) + 'px)',
+              opacity: '0'
+            }
+          ],
+          {
+            duration: 400,
+            easing: 'cubic-bezier(.22,.67,.52,.92)',
+            fill: 'both'
+          }
+        )
+      ] );
 
+      // vertical (top)
       var verticalEmphasisTopDOM = this.refs[ 'emphasis-vertical-top' ].getDOMNode();
-      var verticalEmphasisTop = new AnimationSequence( [
+      var verticalEmphasisTopStopPos = ( verticalHalf - 1 ) * -8;
+      // vertical (top) - in
+      var verticalEmphasisTopIn = new AnimationSequence( [
           new Animation(
             verticalEmphasisTopDOM,
             [
@@ -215,7 +354,7 @@ var blueprintClass = React.createClass( {
                 opacity: '0.3'
               },
               {
-                transform: 'scaleY(1) translateX(' + ( ( verticalHalf - 1 ) * -8 ) + 'px)',
+                transform: 'scaleY(1) translateX(' + verticalEmphasisTopStopPos + 'px)',
                 opacity: '1'
               }
             ],
@@ -226,9 +365,51 @@ var blueprintClass = React.createClass( {
             }
           )
         ] );
+        // vertical (top) - out
+        var verticalEmphasisTopOut = new AnimationSequence( [
+          new Animation(
+            verticalEmphasisTopDOM,
+            [
+              {
+                transform: 'scaleY(1) translateX(' + verticalEmphasisTopStopPos + 'px)',
+                opacity: '1'
+              },
+              {
+                transform: 'scaleY(1) translateX(' + verticalEmphasisTopStopPos + 'px)',
+                opacity: '0.3'
+              }
+            ],
+            {
+              duration: 200,
+              easing: 'cubic-bezier(.22,.67,.52,.92)',
+              fill: 'both'
+            }
+          ),
+          new Animation(
+            verticalEmphasisTopDOM,
+            [
+              {
+                transform: 'scaleY(1) translateX(' + verticalEmphasisTopStopPos + 'px)',
+                opacity: '0.3'
+              },
+              {
+                transform: 'scaleY(0) translateX(' + ( verticalHalf * -8 ) + 'px)',
+                opacity: '0'
+              }
+            ],
+            {
+              duration: 400,
+              easing: 'cubic-bezier(.22,.67,.52,.92)',
+              fill: 'both'
+            }
+          )
+        ] );
 
+      // vertical (bottom)
       var verticalEmphasisBottomDOM = this.refs[ 'emphasis-vertical-bottom' ].getDOMNode();
-      var verticalEmphasisBottom = new AnimationSequence( [
+      var verticalEmphasisBottomStopPos = ( verticalHalf - 1 ) * 8;
+      // vertical (bottom) - in
+      var verticalEmphasisBottomIn = new AnimationSequence( [
         new Animation(
           verticalEmphasisBottomDOM,
           [
@@ -255,7 +436,7 @@ var blueprintClass = React.createClass( {
               opacity: '0.3'
             },
             {
-              transform: 'scaleY(1) translateX(' + ( ( verticalHalf - 1 ) * 8 ) + 'px)',
+              transform: 'scaleY(1) translateX(' + verticalEmphasisBottomStopPos + 'px)',
               opacity: '1'
             }
           ],
@@ -266,9 +447,51 @@ var blueprintClass = React.createClass( {
           }
         )
       ] );
+      // vertical (bottom) - Out
+      var verticalEmphasisBottomOut = new AnimationSequence( [
+        new Animation(
+          verticalEmphasisBottomDOM,
+          [
+            {
+              transform: 'scaleY(1) translateX(' + verticalEmphasisBottomStopPos + 'px)',
+              opacity: '1'
+            },
+            {
+              transform: 'scaleY(1) translateX(' + verticalEmphasisBottomStopPos + 'px)',
+              opacity: '0.3'
+            }
+            ],
+          {
+            duration: 200,
+            easing: 'cubic-bezier(.22,.67,.52,.92)',
+            fill: 'both'
+          }
+        ),
+        new Animation(
+          verticalEmphasisBottomDOM,
+          [
+            {
+              transform: 'scaleY(1) translateX(' + verticalEmphasisBottomStopPos + 'px)',
+              opacity: '0.3'
+            },
+            {
+              transform: 'scaleY(0) translateX(' + ( verticalHalf * 8 ) + 'px)',
+              opacity: '0'
+            }
+          ],
+          {
+            duration: 400,
+            easing: 'cubic-bezier(.22,.67,.52,.92)',
+            fill: 'both'
+          }
+        )
+      ] );
 
     var gridAnimationIn = new AnimationGroup( [ this.animationHorizonatalsIn, this.animationVerticalsIn ] );
-    this.animationIn = new AnimationGroup( [ gridAnimationIn, horizonalEmphasisTop, horizonalEmphasisBottom, verticalEmphasisTop, verticalEmphasisBottom ] );
+    var gridAnimationOut = new AnimationGroup( [ this.animationHorizonatalsOut, this.animationVerticalsOut ] );
+
+    this.animationIn = new AnimationGroup( [ gridAnimationIn, horizonalEmphasisTopIn, horizonalEmphasisBottomIn, verticalEmphasisTopIn, verticalEmphasisBottomIn ] );
+    this.animationOut = new AnimationGroup( [ gridAnimationOut, horizonalEmphasisTopOut, horizonalEmphasisBottomOut, verticalEmphasisTopOut, verticalEmphasisBottomOut ] );
   },
 
   getCurrentSize: function() {

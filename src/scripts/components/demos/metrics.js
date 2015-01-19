@@ -66,14 +66,21 @@ module.exports = React.createClass( {
   },
 
   handleGridClick: function() {
+    if ( this.state.animationState === 'playing' ) {
+      return;
+    }
+
     if ( ! this.state.gridVisible ) {
       var animationInPlayer = document.timeline.play( this.refs.smallPostCard.refs.blueprint.animationIn );
-      animationInPlayer.onfinish = function() {
-        this.setState( {
-          animationState: 'finished'
-        } );
-      }.bind( this );
+    } else {
+      var animationInPlayer = document.timeline.play( this.refs.smallPostCard.refs.blueprint.animationOut );
     }
+
+    animationInPlayer.onfinish = function() {
+      this.setState( {
+        animationState: 'finished'
+      } );
+    }.bind( this );
 
     this.setState( {
       gridVisible: ! this.state.gridVisible,
