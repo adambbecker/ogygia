@@ -72,7 +72,7 @@ var typographyClass = React.createClass( {
 
   render: function() {
     return (
-      <DemoArea introTitle="Typography" size="large">
+      <DemoArea introTitle="Typography" size="medium">
         <DemoAreaSecHeading primaryText="Reader Post Titles" secondaryText="32PX/40PX MERRIWEATHER SEMIBOLD" firstChild={ true } />
         <h1 style={ typographyStyles.readerPostTitle }>The quick brown fox jumps over a lazy dog</h1>
         <DemoAreaSecHeading primaryText="Manage Post Titles" secondaryText="24PX/32PX MERRIWEATHER SEMIBOLD" />

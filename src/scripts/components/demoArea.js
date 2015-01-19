@@ -9,12 +9,16 @@ var React = require( 'react' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
+var projectVars = require( '../vars' );
 var demoAreaStyles = {
   base: {
-    float: 'left',
-    width: '100%',
-    padding: '0 56px',
-    marginTop: '92px'
+    // float: 'left',
+    // width: '100%',
+    // padding: '0 56px',
+    padding: '0 12px',
+    flex: '1 0 100%',
+    width: '0',
+    marginTop: '56px'
   },
   introTitle: {
     color: '#87A6BC',
@@ -24,16 +28,22 @@ var demoAreaStyles = {
     marginBottom: '22px'
   },
   small: {
-    maxWidth: 408
+    // maxWidth: 408
+    flexBasis: '50%'
   },
   medium: {
-    maxWidth: 408 * 2
+    // maxWidth: 408 * 2
   },
   large: {
-    maxWidth: 408 * 3
+    // maxWidth: 408 * 3
   },
   xLarge: {
-    maxWidth: 408 * 4
+    // maxWidth: 408 * 4
+  },
+  mediaQueries: {
+    baseMedium: {
+      padding: '0 24px'
+    }
   }
 };
 
@@ -48,9 +58,23 @@ module.exports = React.createClass( {
     };
   },
 
+  getBaseStyles: function() {
+    var windowWidth = window.innerWidth;
+
+    if ( windowWidth <= projectVars.mediaQueries.medium ) {
+      return merge(
+        demoAreaStyles.base,
+        demoAreaStyles.mediaQueries.baseMedium,
+        this.props.size === 'small' && demoAreaStyles.small
+      );
+    } else {
+      return demoAreaStyles.base;
+    }
+  },
+
   render: function() {
     return (
-      <section style={ merge( demoAreaStyles.base, demoAreaStyles[ this.props.size ] ) }>
+      <section style={ this.getBaseStyles() }>
         <h2 style={ demoAreaStyles.introTitle }>{ this.props.introTitle }</h2>
         { this.props.children }
       </section>
