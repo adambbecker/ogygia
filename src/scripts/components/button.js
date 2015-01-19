@@ -119,7 +119,7 @@ var buttonClass = React.createClass( {
       );
     } else {
       return (
-        <button style={ styles } type={ this.props.type } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur }>{ this.props.children }</button>
+        <button style={ styles } type={ this.props.type } onMouseDown={ this.handleMouseUpDown } onMouseUp={ this.handleMouseUpDown } onMouseEnter={ this.handleMouseEnterLeave } onMouseLeave={ this.handleMouseEnterLeave } onFocus={ this.handleFocusBlur } onBlur={ this.handleFocusBlur } onClick={ this.props.onClick }>{ this.props.children }</button>
       );
     }
   }
