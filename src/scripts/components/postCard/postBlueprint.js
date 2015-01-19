@@ -48,11 +48,12 @@ var blueprintClass = React.createClass( {
 
   componentDidUpdate: function( prevProps, prevState ) {
     if ( this.state.horizonalLines !== prevState.horizonalLines || this.state.verticalLines !== prevState.verticalLines ) {
-      this.attachAnimations();
+      this.attachAnimationsIn();
+      // this.attachAnimationsOut();
     }
   },
 
-  attachAnimations: function() {
+  attachAnimationsIn: function() {
     var horizonalHalf = parseInt( this.state.horizonalLines / 2 ),
       verticalHalf = parseInt( this.state.verticalLines / 2 ),
       h, v;
@@ -117,7 +118,7 @@ var blueprintClass = React.createClass( {
             },
             {
               transform: 'scaleX(1)',
-              opacity: '1'
+              opacity: '0.3'
             }
           ],
           {
@@ -131,7 +132,7 @@ var blueprintClass = React.createClass( {
           [
             {
               transform: 'scaleX(1)',
-              opacity: '1'
+              opacity: '0.3'
             },
             {
               transform: 'scaleX(1) translateY(' + ( ( horizonalHalf - 2 ) * -8 ) + 'px)',
@@ -157,7 +158,7 @@ var blueprintClass = React.createClass( {
               },
               {
                 transform: 'scaleX(1)',
-                opacity: '1'
+                opacity: '0.3'
               }
             ],
             {
@@ -171,7 +172,7 @@ var blueprintClass = React.createClass( {
             [
               {
                 transform: 'scaleX(1)',
-                opacity: '1'
+                opacity: '0.3'
               },
               {
                 transform: 'scaleX(1) translateY(' + ( ( horizonalHalf - 2 ) * 8 ) + 'px)',
@@ -197,7 +198,7 @@ var blueprintClass = React.createClass( {
               },
               {
                 transform: 'scaleY(1)',
-                opacity: '1'
+                opacity: '0.3'
               }
               ],
             {
@@ -211,7 +212,7 @@ var blueprintClass = React.createClass( {
             [
               {
                 transform: 'scaleY(1)',
-                opacity: '1'
+                opacity: '0.3'
               },
               {
                 transform: 'scaleY(1) translateX(' + ( ( verticalHalf - 1 ) * -8 ) + 'px)',
@@ -237,7 +238,7 @@ var blueprintClass = React.createClass( {
             },
             {
               transform: 'scaleY(1)',
-              opacity: '1'
+              opacity: '0.3'
             }
           ],
           {
@@ -251,7 +252,7 @@ var blueprintClass = React.createClass( {
           [
             {
               transform: 'scaleY(1)',
-              opacity: '1'
+              opacity: '0.3'
             },
             {
               transform: 'scaleY(1) translateX(' + ( ( verticalHalf - 1 ) * 8 ) + 'px)',
@@ -277,8 +278,8 @@ var blueprintClass = React.createClass( {
     var height = DOMNode.offsetHeight;
 
     this.setState( {
-      horizonalLines: height / 8,
-      verticalLines: width / 8
+      horizonalLines: parseInt( height / 8 ),
+      verticalLines: parseInt( width / 8 )
     } );
   },
 
