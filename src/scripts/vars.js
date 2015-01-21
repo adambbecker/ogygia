@@ -16,6 +16,10 @@ var projectsVars = {
   fonts: {
     sans: "'Open Sans', sans-serif",
     serif: "'Merriweather', serif"
+  },
+  mediaQueries: {
+    small: 408,
+    medium: 408 * 2
   }
 };
 

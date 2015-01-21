@@ -21,7 +21,7 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <DemoArea introTitle="Standard Buttons">
+      <DemoArea introTitle="Standard Buttons" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
           <Button disableEvents={ true }>Label</Button>
           <DemoAreaLabel>Standard Button</DemoAreaLabel>

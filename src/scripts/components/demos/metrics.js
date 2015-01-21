@@ -90,7 +90,7 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <DemoArea introTitle="Metrics" size="large">
+      <DemoArea introTitle="Metrics" size="large" mediaQuery={ this.props.mediaQuery }>
         <p style={ metricsDemoStyles.introBodyText }>Calypso uses an 8px grid with 2px subdivisions. Each square on the grid is 8px wide by 8px tall. Aligning elements to the grid ensures a harmonious visual result.</p>
         <Button style={ metricsDemoStyles.gridButton } onClick={ this.handleGridClick } disabled={ this.getButtonDisabledStatus() }>{ this.getButtonText() }</Button>
         <DemoAreaSecHeading primaryText="Widest" secondaryText="656px Wide" firstChild={ true } />

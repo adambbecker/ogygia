@@ -58,7 +58,7 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <DemoArea introTitle="Form Validation" size="medium">
+      <DemoArea introTitle="Form Validation" size="medium" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
           <TextInput value="Text Input" error="Your password must be at least 8 characters." containerStyle={ demoContainerStyles } disableEvents={ true } />
           <DemoAreaLabel>Error</DemoAreaLabel>
