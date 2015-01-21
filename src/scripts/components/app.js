@@ -7,6 +7,7 @@
 // ---- External Dependencies ----
 var React = require('react');
 var merge = require( '../lib/merge' );
+var debounce = require( 'lodash-node/modern/functions/debounce' );
 
 // ---- Internal Dependencies ----
 var MainHeader = require('./mainHeader');
@@ -42,16 +43,49 @@ module.exports = React.createClass( {
 
   displayName: 'App',
 
-  getDemoStyles: function() {
+  getInitialState: function() {
+    return {
+      mediaQuery: this.getCurrentMediaQuery()
+    };
+  },
+
+  getCurrentMediaQuery: function() {
     var windowWidth = window.innerWidth;
 
-    if ( windowWidth <= projectVars.mediaQueries.medium ) {
+    if ( windowWidth > projectVars.mediaQueries.small && windowWidth <= projectVars.mediaQueries.medium ) {
+      return 'medium';
+    } else {
+      return 'small';
+    }
+  },
+
+  getDemoStyles: function() {
+    if ( this.state.mediaQuery === 'medium' ) {
       return merge(
         demosStyles.base,
         demosStyles.mediaQueries.baseMedium
       );
     } else {
       return demosStyles.base;
+    }
+  },
+
+  componentDidMount: function() {
+    this.debouncedAfterResize = debounce( this.afterResize, 300 );
+    window.addEventListener( 'resize', this.debouncedAfterResize );
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener( 'resize', this.debouncedAfterResize );
+  },
+
+  afterResize: function() {
+    var currentMediaQuery = this.getCurrentMediaQuery();
+
+    if ( this.state.mediaQuery !== currentMediaQuery ) {
+      this.setState( {
+        mediaQuery: currentMediaQuery
+      } );
     }
   },
 
