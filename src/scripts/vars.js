@@ -19,7 +19,8 @@ var projectsVars = {
   },
   mediaQueries: {
     small: 408,
-    medium: 408 * 2
+    medium: 408 * 2,
+    large: 1380
   }
 };
 

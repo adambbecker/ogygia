@@ -37,7 +37,7 @@ module.exports = React.createClass( {
   displayName: 'MainHeader',
 
   getHeaderStyles: function() {
-    if ( this.props.mediaQuery === 'medium' ) {
+    if ( this.props.mediaQuery !== 'small' ) {
       return merge(
         mainHeaderStyles.base,
         mainHeaderStyles.mediaQueries.baseMedium

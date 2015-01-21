@@ -52,7 +52,11 @@ module.exports = React.createClass( {
   getCurrentMediaQuery: function() {
     var windowWidth = window.innerWidth;
 
-    if ( windowWidth > projectVars.mediaQueries.small && windowWidth <= projectVars.mediaQueries.medium ) {
+    if ( windowWidth > projectVars.mediaQueries.large ) {
+      return 'xLarge';
+    } else if ( windowWidth > projectVars.mediaQueries.medium && windowWidth <= projectVars.mediaQueries.large ) {
+      return 'large';
+    } else if ( windowWidth > projectVars.mediaQueries.small && windowWidth <= projectVars.mediaQueries.medium ) {
       return 'medium';
     } else {
       return 'small';
@@ -60,7 +64,7 @@ module.exports = React.createClass( {
   },
 
   getDemoStyles: function() {
-    if ( this.state.mediaQuery === 'medium' ) {
+    if ( this.state.mediaQuery !== 'small' ) {
       return merge(
         demosStyles.base,
         demosStyles.mediaQueries.baseMedium

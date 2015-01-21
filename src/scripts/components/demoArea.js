@@ -35,9 +35,11 @@ var demoAreaStyles = {
   },
   medium: {
     // maxWidth: 408 * 2
+    flexBasis: '50%'
   },
   large: {
     // maxWidth: 408 * 3
+    flexBasis: '50%'
   },
   xLarge: {
     // maxWidth: 408 * 4
@@ -45,6 +47,15 @@ var demoAreaStyles = {
   mediaQueries: {
     baseMedium: {
       padding: '0 24px'
+    },
+    smallLarge: {
+      flexBasis: ( ( 1 / 3 ) * 100 ) + '%'
+    },
+    smallXLarge: {
+      flexBasis: '25%'
+    },
+    mediumXLarge: {
+      flexBasis: ( ( ( 2 / 3 ) / 2 ) * 100 ) + '%'
     }
   }
 };
@@ -61,7 +72,22 @@ module.exports = React.createClass( {
   },
 
   getBaseStyles: function() {
-    if ( this.props.mediaQuery === 'medium' ) {
+    if ( this.props.mediaQuery === 'xLarge' ) {
+      return merge(
+        demoAreaStyles.base,
+        demoAreaStyles.mediaQueries.baseMedium,
+        this.props.size === 'small' && demoAreaStyles.mediaQueries.smallXLarge,
+        this.props.size === 'medium' && demoAreaStyles.mediaQueries.mediumXLarge,
+        this.props.size === 'large' && demoAreaStyles.large
+      );
+    } else if ( this.props.mediaQuery === 'large' ) {
+      return merge(
+        demoAreaStyles.base,
+        demoAreaStyles.mediaQueries.baseMedium,
+        this.props.size === 'small' && demoAreaStyles.mediaQueries.smallLarge,
+        this.props.size === 'medium' && demoAreaStyles.medium
+      );
+    } else if ( this.props.mediaQuery === 'medium' ) {
       return merge(
         demoAreaStyles.base,
         demoAreaStyles.mediaQueries.baseMedium,
