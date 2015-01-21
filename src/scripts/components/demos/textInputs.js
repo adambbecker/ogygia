@@ -22,7 +22,7 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <DemoArea introTitle="Text Inputs">
+      <DemoArea introTitle="Text Inputs" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
           <TextInput placeholder="Placeholder Text" disableEvents={ true } />
           <DemoAreaLabel>Default</DemoAreaLabel>

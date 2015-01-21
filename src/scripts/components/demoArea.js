@@ -16,7 +16,9 @@ var demoAreaStyles = {
     // width: '100%',
     // padding: '0 56px',
     padding: '0 12px',
-    flex: '1 0 100%',
+    flexGrow: '1',
+    flexShrink: '0',
+    flexBasis: '100%',
     width: '0',
     marginTop: '56px'
   },
@@ -59,9 +61,7 @@ module.exports = React.createClass( {
   },
 
   getBaseStyles: function() {
-    var windowWidth = window.innerWidth;
-
-    if ( windowWidth <= projectVars.mediaQueries.medium ) {
+    if ( this.props.mediaQuery === 'medium' ) {
       return merge(
         demoAreaStyles.base,
         demoAreaStyles.mediaQueries.baseMedium,

@@ -21,7 +21,7 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <DemoArea introTitle="Textareas" size="medium">
+      <DemoArea introTitle="Textareas" size="medium" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
           <TextArea placeholder="Placeholder Text" disableEvents={ true } />
           <DemoAreaLabel>Default</DemoAreaLabel>

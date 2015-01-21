@@ -92,15 +92,15 @@ module.exports = React.createClass( {
   render: function() {
     return (
       <div style={ appStyles }>
-        <MainHeader />
+        <MainHeader mediaQuery={ this.state.mediaQuery } />
         <div style={ this.getDemoStyles() }>
-          <TypographyDemo />
-          <MetricsDemo />
-          <TextInputsDemo />
-          <TextAreasDemo />
-          <FormValidationDemo />
-          <StandardButtonsDemo />
-          <PrimaryButtonsDemo />
+          <TypographyDemo mediaQuery={ this.state.mediaQuery } />
+          <MetricsDemo mediaQuery={ this.state.mediaQuery } />
+          <TextInputsDemo mediaQuery={ this.state.mediaQuery } />
+          <TextAreasDemo mediaQuery={ this.state.mediaQuery } />
+          <FormValidationDemo mediaQuery={ this.state.mediaQuery } />
+          <StandardButtonsDemo mediaQuery={ this.state.mediaQuery } />
+          <PrimaryButtonsDemo mediaQuery={ this.state.mediaQuery } />
         </div>
       </div>
     );
