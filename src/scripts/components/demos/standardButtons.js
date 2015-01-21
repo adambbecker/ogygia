@@ -23,29 +23,29 @@ module.exports = React.createClass( {
     return (
       <DemoArea introTitle="Standard Buttons" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Standard Button</DemoAreaLabel>
           <Button disableEvents={ true }>Label</Button>
-          <DemoAreaLabel>Standard Button</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Standard Button, Hover</DemoAreaLabel>
           <Button hover={ true } disableEvents={ true }>Label</Button>
-          <DemoAreaLabel>Standard Button, Hover</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Standard Button, Active</DemoAreaLabel>
           <Button active={ true } disableEvents={ true }>Label</Button>
-          <DemoAreaLabel>Standard Button, Active</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Standard Button, Focus</DemoAreaLabel>
           <Button focus={ true } disableEvents={ true }>Label</Button>
-          <DemoAreaLabel>Standard Button, Focus</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Standard Button, Disabled</DemoAreaLabel>
           <Button disabled={ true } disableEvents={ true }>Label</Button>
-          <DemoAreaLabel>Standard Button, Disabled</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaSecHeading />
         <DemoAreaFlex>
+          <DemoAreaLabel demo={ true } mediaQuery={ this.props.mediaQuery }>Demo</DemoAreaLabel>
           <Button>Label</Button>
-          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
         </DemoAreaFlex>
       </DemoArea>
     )

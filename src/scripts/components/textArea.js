@@ -11,8 +11,10 @@ var merge = require( '../lib/merge' );
 // ---- Styles ----
 var inputStyles = require( './textInput' ).styles;
 var textAreaStyles = {
-  base: {
-    maxWidth: '416px'
+  mediaQueries: {
+    baseMedium: {
+      maxWidth: '80%'
+    }
   }
 };
 
@@ -42,7 +44,8 @@ var textAreaClass = React.createClass( {
       textAreaStyles.base,
       ( this.state.hover || this.props.hover ) && inputStyles.hover,
       ( this.state.focus || this.props.focus ) && inputStyles.focus,
-      this.props.disabled && inputStyles.disabled
+      this.props.disabled && inputStyles.disabled,
+      this.props.mediaQuery !== 'small' && textAreaStyles.mediaQueries.baseMedium
     );
 
     if ( this.props.disableEvents ) {

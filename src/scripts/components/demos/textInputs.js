@@ -15,6 +15,11 @@ var DemoAreaLabel = require('../demoAreaLabel');
 var TextInput = require('../textInput').reactClass;
 var Label = require('../label');
 
+// ---- Styles ----
+var demoHeadingStyles = {
+  marginTop: '14px'
+}
+
 // ---- React Class ----
 module.exports = React.createClass( {
 
@@ -24,27 +29,27 @@ module.exports = React.createClass( {
     return (
       <DemoArea introTitle="Text Inputs" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
-          <TextInput placeholder="Placeholder Text" disableEvents={ true } />
-          <DemoAreaLabel>Default</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Default</DemoAreaLabel>
+          <TextInput placeholder="Placeholder Text" disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput hover={ true } disableEvents={ true } />
-          <DemoAreaLabel>Hover</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Hover</DemoAreaLabel>
+          <TextInput hover={ true } disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput focus={ true } value="Text Input" disableEvents={ true } />
-          <DemoAreaLabel>Active</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Active</DemoAreaLabel>
+          <TextInput focus={ true } value="Text Input" disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput disabled={ true } disableEvents={ true } />
-          <DemoAreaLabel>Disabled</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Disabled</DemoAreaLabel>
+          <TextInput disabled={ true } disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <Label required={ true }>Label Text</Label>
-        <TextInput placeholder="Placeholder Text" disableEvents={ true } />
-        <DemoAreaSecHeading />
+        <TextInput placeholder="Placeholder Text" disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
+        <DemoAreaSecHeading style={ demoHeadingStyles } />
         <DemoAreaFlex>
-          <TextInput placeholder="Placeholder Text" />
-          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
+          <DemoAreaLabel demo={ true } mediaQuery={ this.props.mediaQuery }>Demo</DemoAreaLabel>
+          <TextInput placeholder="Placeholder Text" mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
       </DemoArea>
     )

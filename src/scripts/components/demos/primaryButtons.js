@@ -23,29 +23,29 @@ module.exports = React.createClass( {
     return (
       <DemoArea introTitle="Primary Buttons" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Primary Button</DemoAreaLabel>
           <Button disableEvents={ true } primary={ true }>Label</Button>
-          <DemoAreaLabel>Primary Button</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Primary Button, Hover</DemoAreaLabel>
           <Button hover={ true } disableEvents={ true } primary={ true }>Label</Button>
-          <DemoAreaLabel>Primary Button, Hover</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Primary Button, Active</DemoAreaLabel>
           <Button active={ true } disableEvents={ true } primary={ true }>Label</Button>
-          <DemoAreaLabel>Primary Button, Active</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Primary Button, Focus</DemoAreaLabel>
           <Button focus={ true } disableEvents={ true } primary={ true }>Label</Button>
-          <DemoAreaLabel>Primary Button, Focus</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaFlex>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Primary Button, Disabled</DemoAreaLabel>
           <Button disabled={ true } disableEvents={ true } primary={ true }>Label</Button>
-          <DemoAreaLabel>Primary Button, Disabled</DemoAreaLabel>
         </DemoAreaFlex>
         <DemoAreaSecHeading />
         <DemoAreaFlex>
+          <DemoAreaLabel demo={ true } mediaQuery={ this.props.mediaQuery }>Demo</DemoAreaLabel>
           <Button primary={ true }>Label</Button>
-          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
         </DemoAreaFlex>
       </DemoArea>
     )

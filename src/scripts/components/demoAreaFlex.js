@@ -10,6 +10,7 @@ var React = require( 'react' );
 // ---- Styles ----
 var flexStyles = {
   display: 'flex',
+  flexWrap: 'wrap',
   width: '100%',
   alignItems: 'center',
   marginBottom: '14px'

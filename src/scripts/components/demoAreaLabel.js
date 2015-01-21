@@ -13,19 +13,29 @@ var projectVars = require( '../vars' );
 var labelStyles = {
   base: {
     width: 0,
-    flex: '1 0 auto',
+    flexGrow: '1',
+    flexShrink: '0',
+    flexBasis: '100%',
     fontSize: '11px',
     fontWeight: '600',
     color: projectVars.colors.textLight,
     lineHeight: '1',
     textTransform: 'uppercase',
-    marginLeft: '18px',
+    marginBottom: '6px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap'
   },
   demo: {
     color: projectVars.colors.textDark
+  },
+  mediaQueries: {
+    baseMedium: {
+      flexBasis: 'auto',
+      order: '2',
+      marginLeft: '18px',
+      marginBottom: '0'
+    }
   }
 };
 
@@ -35,10 +45,14 @@ module.exports = React.createClass( {
   displayName: 'DemoAreaLabel',
 
   render: function() {
-    var styles = ( this.props.demo ) ? merge( labelStyles.base, labelStyles.demo ) : labelStyles.base;
+    var renderedStyles = merge(
+      labelStyles.base,
+      this.props.demo && labelStyles.demo,
+      this.props.mediaQuery !== 'small' && labelStyles.mediaQueries.baseMedium
+    );
 
     return (
-      <label style={ styles }>{ this.props.children }</label>
+      <label style={ renderedStyles }>{ this.props.children }</label>
     );
   }
 

@@ -43,7 +43,14 @@ var inputStyles = {
   }
 };
 var demoContainerStyles = {
-  maxWidth: '200px'
+  base: {
+    width: '100%'
+  },
+  mediaQueries: {
+    baseMedium: {
+      maxWidth: '200px'
+    }
+  }
 };
 
 // ---- React Class ----
@@ -67,6 +74,14 @@ var inputClass = React.createClass( {
     };
   },
 
+  getFeedback: function() {
+    if ( this.state.error ) {
+      return ( <InputFeedback error={ this.state.error } animate={ ! this.props.disableEvents }>{ this.state.error }</InputFeedback> );
+    } else if ( this.state.success ) {
+      return ( <InputFeedback success={ this.state.success } animate={ ! this.props.disableEvents }>{ this.state.success }</InputFeedback> );
+    }
+  },
+
   handleMouseEnterLeave: function() {
     this.setState( { hover: ! this.state.hover } );
   },
@@ -79,17 +94,8 @@ var inputClass = React.createClass( {
     this.setState( { value: e.target.value } );
   },
 
-  getFeedback: function() {
-    if ( this.state.error ) {
-      return ( <InputFeedback error={ this.state.error } animate={ ! this.props.disableEvents }>{ this.state.error }</InputFeedback> );
-    } else if ( this.state.success ) {
-      return ( <InputFeedback success={ this.state.success } animate={ ! this.props.disableEvents }>{ this.state.success }</InputFeedback> );
-    }
-  },
-
   render: function() {
     var value = this.state.value;
-
     var renderedInputStyles = merge(
       inputStyles.base,
       ( this.state.hover || this.props.hover ) && inputStyles.hover,
@@ -98,7 +104,8 @@ var inputClass = React.createClass( {
       ( this.state.error || this.props.error ) && inputStyles.error
     );
     var renderedContainerStyles = merge(
-      demoContainerStyles,
+      demoContainerStyles.base,
+      this.props.mediaQuery !== 'small' && demoContainerStyles.mediaQueries.baseMedium,
       this.props.containerStyle
     );
 

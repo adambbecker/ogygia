@@ -6,6 +6,7 @@
 
 // ---- External Dependencies ----
 var React = require( 'react' );
+var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
@@ -22,10 +23,18 @@ var demoContainerStyles = {
   maxWidth: '304px',
   width: '304px'
 };
-var demoSubmitStyle = {
-  display: 'inline-block',
-  marginLeft: '18px',
-  verticalAlign: 'top'
+var demoSubmitStyles = {
+  base: {
+    display: 'inline-block',
+    marginTop: '6px',
+    verticalAlign: 'top'
+  },
+  mediaQueries: {
+    baseMedium: {
+      marginTop: '0',
+      marginLeft: '18px'
+    }
+  }
 }
 
 // ---- React Class ----
@@ -57,25 +66,30 @@ module.exports = React.createClass( {
   },
 
   render: function() {
+    var renderedDemoSubmitStyles = merge(
+      demoSubmitStyles.base,
+      this.props.mediaQuery !== 'small' && demoSubmitStyles.mediaQueries.baseMedium
+    );
+
     return (
       <DemoArea introTitle="Form Validation" size="medium" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
-          <TextInput value="Text Input" error="Your password must be at least 8 characters." containerStyle={ demoContainerStyles } disableEvents={ true } />
-          <DemoAreaLabel>Error</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Error</DemoAreaLabel>
+          <TextInput value="Text Input" error="Your password must be at least 8 characters." containerStyle={ demoContainerStyles } disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput value="Text Input" error="Your password is too weak. You can improve it by adding additional uppercase letters, lowercase letters, or numbers." containerStyle={ demoContainerStyles } disableEvents={ true } />
-          <DemoAreaLabel>Multi-Line Error</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Multi-Line Error</DemoAreaLabel>
+          <TextInput value="Text Input" error="Your password is too weak. You can improve it by adding additional uppercase letters, lowercase letters, or numbers." containerStyle={ demoContainerStyles } disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextInput value="Text Input" success="Your password can be saved." containerStyle={ demoContainerStyles } disableEvents={ true } />
-          <DemoAreaLabel>Success</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Success</DemoAreaLabel>
+          <TextInput value="Text Input" success="Your password can be saved." containerStyle={ demoContainerStyles } disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaSecHeading />
         <form onSubmit={ this.handleSubmit }>
           <Label required={ true }>Email Address</Label>
-          <TextInput containerStyle={ demoContainerStyles } ref="emailTextContainer" />
-          <Button primary={ true } style={ demoSubmitStyle }>Submit</Button>
+          <TextInput containerStyle={ demoContainerStyles } ref="emailTextContainer" mediaQuery={ this.props.mediaQuery } />
+          <Button primary={ true } style={ renderedDemoSubmitStyles }>Submit</Button>
         </form>
       </DemoArea>
     );

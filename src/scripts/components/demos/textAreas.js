@@ -23,25 +23,25 @@ module.exports = React.createClass( {
     return (
       <DemoArea introTitle="Textareas" size="medium" mediaQuery={ this.props.mediaQuery }>
         <DemoAreaFlex>
-          <TextArea placeholder="Placeholder Text" disableEvents={ true } />
-          <DemoAreaLabel>Default</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Default</DemoAreaLabel>
+          <TextArea placeholder="Placeholder Text" disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextArea hover={ true } disableEvents={ true } />
-          <DemoAreaLabel>Hover</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Hover</DemoAreaLabel>
+          <TextArea hover={ true } disableEvents={ true } mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextArea focus={ true } disableEvents={ true }>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet.</TextArea>
-          <DemoAreaLabel>Active</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Active</DemoAreaLabel>
+          <TextArea focus={ true } disableEvents={ true } mediaQuery={ this.props.mediaQuery }>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet.</TextArea>
         </DemoAreaFlex>
         <DemoAreaFlex>
-          <TextArea disabled={ true } disableEvents={ true } placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet." />
-          <DemoAreaLabel>Disabled</DemoAreaLabel>
+          <DemoAreaLabel mediaQuery={ this.props.mediaQuery }>Disabled</DemoAreaLabel>
+          <TextArea disabled={ true } disableEvents={ true } placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit tortor id est porttitor, a viverra quam bibendum. Fusce laoreet metus sit amet." mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
         <DemoAreaSecHeading />
         <DemoAreaFlex>
-          <TextArea placeholder="Placeholder Text" />
-          <DemoAreaLabel demo={ true }>Demo</DemoAreaLabel>
+          <DemoAreaLabel demo={ true } mediaQuery={ this.props.mediaQuery }>Demo</DemoAreaLabel>
+          <TextArea placeholder="Placeholder Text" mediaQuery={ this.props.mediaQuery } />
         </DemoAreaFlex>
       </DemoArea>
     )
