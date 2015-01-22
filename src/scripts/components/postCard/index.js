@@ -72,7 +72,7 @@ var cardClass = React.createClass( {
   getDefaultProps: function() {
     return {
       author: {
-        avatarURL: '../public/images/demo_avatar.png',
+        avatarURL: 'images/demo_avatar.png',
         name: 'Newgate Enterprises'
       },
       title: 'Big July earthquakes confound zany experimental vow',

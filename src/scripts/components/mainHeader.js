@@ -13,7 +13,6 @@ var projectVars = require( '../vars' );
 var mainHeaderStyles = {
   base: {
     width: '100%',
-    // padding: '30px 112px',
     padding: '24px',
     backgroundColor: projectVars.colors.blueWordPress,
     overflow: 'hidden'
@@ -50,7 +49,7 @@ module.exports = React.createClass( {
   render: function() {
     return (
       <header style={ this.getHeaderStyles() }>
-        <h1 style={ mainHeaderStyles.h1 }>Calypso Patterns</h1>
+        <h1 style={ mainHeaderStyles.h1 }>UI Patterns</h1>
       </header>
     );
   }
