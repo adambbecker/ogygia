@@ -21766,7 +21766,6 @@ var projectVars = require( '../vars' );
 var mainHeaderStyles = {
   base: {
     width: '100%',
-    // padding: '30px 112px',
     padding: '24px',
     backgroundColor: projectVars.colors.blueWordPress,
     overflow: 'hidden'
@@ -21803,7 +21802,7 @@ module.exports = React.createClass( {
   render: function() {
     return (
       React.createElement("header", {style:  this.getHeaderStyles() }, 
-        React.createElement("h1", {style:  mainHeaderStyles.h1}, "Calypso Patterns")
+        React.createElement("h1", {style:  mainHeaderStyles.h1}, "UI Patterns")
       )
     );
   }
@@ -21885,7 +21884,7 @@ var cardClass = React.createClass( {
   getDefaultProps: function() {
     return {
       author: {
-        avatarURL: '../public/images/demo_avatar.png',
+        avatarURL: 'images/demo_avatar.png',
         name: 'Newgate Enterprises'
       },
       title: 'Big July earthquakes confound zany experimental vow',
