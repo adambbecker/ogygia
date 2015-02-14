@@ -101,7 +101,8 @@ var inputClass = React.createClass( {
       ( this.state.hover || this.props.hover ) && inputStyles.hover,
       ( this.state.focus || this.props.focus ) && inputStyles.focus,
       this.props.disabled && inputStyles.disabled,
-      ( this.state.error || this.props.error ) && inputStyles.error
+      ( this.state.error || this.props.error ) && inputStyles.error,
+      this.props.style
     );
     var renderedContainerStyles = merge(
       demoContainerStyles.base,

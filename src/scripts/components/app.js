@@ -6,6 +6,7 @@
 
 // ---- External Dependencies ----
 var React = require('react');
+var RouteHandler = require('react-router').RouteHandler;
 var merge = require( '../lib/merge' );
 var debounce = require( 'lodash-node/modern/functions/debounce' );
 
@@ -18,6 +19,7 @@ var PrimaryButtonsDemo = require('./demos/primaryButtons');
 var TextInputsDemo = require('./demos/textInputs');
 var TextAreasDemo = require('./demos/textAreas');
 var FormValidationDemo = require('./demos/formValidation');
+var ModalsDemo = require('./demos/modals');
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -105,7 +107,9 @@ module.exports = React.createClass( {
           <FormValidationDemo mediaQuery={ this.state.mediaQuery } />
           <StandardButtonsDemo mediaQuery={ this.state.mediaQuery } />
           <PrimaryButtonsDemo mediaQuery={ this.state.mediaQuery } />
+          <ModalsDemo mediaQuery={ this.state.mediaQuery } />
         </div>
+        <RouteHandler mediaQuery={ this.state.mediaQuery } />
       </div>
     );
   }
