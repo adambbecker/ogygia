@@ -18,8 +18,13 @@ var Button = require( '../button' ).reactClass;
 
 // ---- Styles ----
 var modalStyles = require('../modal').styles;
-var demoHeadingStyles = {
-  marginTop: '14px'
+var modalDemoStyles = {
+  heading: {
+    marginTop: '14px'
+  },
+  modalDialog: {
+    zIndex: '0'
+  }
 };
 
 // ---- React Class ----
@@ -34,7 +39,11 @@ module.exports = React.createClass( {
   },
 
   render: function() {
-    var cancelButtonStyles = merge(
+    var demoModalDialogStyles = merge(
+        modalStyles.dialog.base,
+        modalDemoStyles.modalDialog
+      ),
+      cancelButtonStyles = merge(
         modalStyles.dialog.paneButton.base,
         this.props.mediaQuery !== 'small' && modalStyles.mediaQueries.paneButtonMedium,
         modalStyles.dialog.paneButton.firstChild
@@ -47,7 +56,7 @@ module.exports = React.createClass( {
 
     return (
       <DemoArea introTitle="Modals" mediaQuery={ this.props.mediaQuery }>
-        <div style={ modalStyles.dialog.base }>
+        <div style={ demoModalDialogStyles }>
           <div style={ modalStyles.dialog.topPaneSection }>
             <h4 style={ modalStyles.dialog.paneHeading }>Header</h4>
             <p style={ modalStyles.dialog.paneBodyText }>Aliquam nec ultricies purus, eu cursus metus. Donec placerat laoreet vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi cursus ornare turpis, nec laoreet ipsum tempor id.</p>
@@ -57,7 +66,7 @@ module.exports = React.createClass( {
             <Button primary={ true } style={ acceptButtonStyles } disableEvents={ true }>Submit</Button>
           </div>
         </div>
-        <DemoAreaSecHeading style={ demoHeadingStyles } />
+        <DemoAreaSecHeading style={ modalDemoStyles.heading } />
         <DemoAreaFlex>
           <DemoAreaLabel demo={ true } mediaQuery={ this.props.mediaQuery }>Demo</DemoAreaLabel>
           <Button primary={ true } onClick={ this.handleDemoClick }>Show</Button>
