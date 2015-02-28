@@ -5,7 +5,8 @@
 // =========================================
 
 // ---- External Dependencies ----
-var React = require( 'react' );
+// var React = require( 'react' );
+var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -48,7 +49,7 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <header style={ this.getHeaderStyles() }>
+      <header style={ this.getHeaderStyles() } onClick={ this.props.onClick }>
         <h1 style={ mainHeaderStyles.h1 }>UI Patterns</h1>
       </header>
     );

@@ -5,7 +5,8 @@
 // ===========================================
 
 // ---- External Dependencies ----
-var React = require( 'react' );
+// var React = require( 'react' );
+var React = require( '../../lib/react-with-addons' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
