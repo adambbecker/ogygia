@@ -6,8 +6,7 @@
 // =========================================
 
 // ---- External Dependencies ----
-// var React = require( 'react/addons' );
-var React = require( '../lib/react-with-addons' );
+var React = require( 'react/addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----

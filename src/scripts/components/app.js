@@ -5,9 +5,8 @@
 // =========================================
 
 // ---- External Dependencies ----
-// var React = require('react');
-var React = require( '../lib/react-with-addons' );
-// var RouteHandler = require('react-router').RouteHandler;
+var React = require('react');
+var RouteHandler = require('react-router').RouteHandler;
 var merge = require( '../lib/merge' );
 var debounce = require( 'lodash-node/modern/functions/debounce' );
 
@@ -20,8 +19,8 @@ var PrimaryButtonsDemo = require('./demos/primaryButtons');
 var TextInputsDemo = require('./demos/textInputs');
 var TextAreasDemo = require('./demos/textAreas');
 var FormValidationDemo = require('./demos/formValidation');
-// var ModalsDemo = require('./demos/modals');
-var SidebarDemo = require('./sidebar');
+var ModalsDemo = require('./demos/modals');
+var MenuDemo = require('./menu');
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -50,7 +49,7 @@ module.exports = React.createClass( {
   getInitialState: function() {
     return {
       mediaQuery: this.getCurrentMediaQuery(),
-      sidebarOpen: false
+      menuOpen: false
     };
   },
 
@@ -98,16 +97,16 @@ module.exports = React.createClass( {
     }
   },
 
-  toggleSidebar: function() {
+  toggleMenu: function() {
     this.setState( {
-      sidebarOpen: ! this.state.sidebarOpen
+      menuOpen: ! this.state.menuOpen
     } );
   },
 
   render: function() {
     return (
       <div style={ appStyles }>
-        <MainHeader mediaQuery={ this.state.mediaQuery } onClick={ this.toggleSidebar } />
+        <MainHeader mediaQuery={ this.state.mediaQuery } onClick={ this.toggleMenu } />
         <div style={ this.getDemoStyles() }>
           <TypographyDemo mediaQuery={ this.state.mediaQuery } />
           <MetricsDemo mediaQuery={ this.state.mediaQuery } />
@@ -116,8 +115,10 @@ module.exports = React.createClass( {
           <FormValidationDemo mediaQuery={ this.state.mediaQuery } />
           <StandardButtonsDemo mediaQuery={ this.state.mediaQuery } />
           <PrimaryButtonsDemo mediaQuery={ this.state.mediaQuery } />
-          <SidebarDemo open={ this.state.sidebarOpen } onClick={ this.toggleSidebar } />
+          <ModalsDemo mediaQuery={ this.state.mediaQuery } />
         </div>
+        <MenuDemo open={ this.state.menuOpen } onClick={ this.toggleMenu } />
+        <RouteHandler mediaQuery={ this.state.mediaQuery } />
       </div>
     );
   }

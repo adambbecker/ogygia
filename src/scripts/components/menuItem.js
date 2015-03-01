@@ -1,16 +1,15 @@
 // =========================================
-// SidebarItem.js
+// MenuItem.js
 // ----
-// Sidebar Item
+// Menu Items live inside Menu
 // =========================================
 
 // ---- External Dependencies ----
-// var React = require( 'react' );
-var React = require( '../lib/react-with-addons' );
+var React = require( 'react' );
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
-var sidebarItemStyles = {
+var menuItemStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -22,15 +21,15 @@ var sidebarItemStyles = {
 };
 
 // ---- React Class ----
-var sidebarItemClass = React.createClass( {
+var menuItemClass = React.createClass( {
 
   render: function() {
     return (
-      <li style={ sidebarItemStyles }><span>{ this.props.children }</span></li>
+      <li style={ menuItemStyles }><span>{ this.props.children }</span></li>
     );
   }
 
 } );
 
 // ==== Module Export ====
-module.exports = sidebarItemClass;
+module.exports = menuItemClass;

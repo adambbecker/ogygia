@@ -5,8 +5,7 @@
 // ================================================
 
 // ---- External Dependencies ----
-// var React = require( 'react' );
-var React = require( '../lib/react-with-addons' );
+var React = require( 'react' );
 
 // ---- Internal Variables ----
 var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;

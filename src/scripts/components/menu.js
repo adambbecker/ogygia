@@ -5,18 +5,16 @@
 // =========================================
 
 // ---- External Dependencies ----
-var React = require( '../lib/react-with-addons' );
-var ReactStyleTransitionGroup = React.addons.StyleTransitionGroup;
-// var React = require( 'react' );
-// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var React = require( 'react' );
+var ReactStyleTransitionGroup = require( 'react-style-transition-group' );
 var merge = require( '../lib/merge' );
 
 // ---- Internal Dependencies ----
-var SidebarItem = require( './sidebarItem' );
+var MenuItem = require( './menuItem' );
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
-var sidebarStyles = {
+var menuStyles = {
   base: {
     display: 'flex',
     flexDirection: 'column',
@@ -27,27 +25,40 @@ var sidebarStyles = {
     top: '0',
     bottom: '0',
     padding: 48,
-    // backgroundColor: 'rgba(200, 215, 225, 0.85)',
+    pointerEvents: 'none',
+    overflow: 'hidden'
+  },
+  bg: {
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    top: '0',
+    bottom: '0',
     backgroundColor: projectVars.colors.blueWordPress,
-    transition: 'opacity 0.3s ease-in-out',
-    opacity: '0',
-    pointerEvents: 'none'
+    transform: 'translate3d(0, 0, 0) scaleY(0)',
+    transformOrigin: 'top'
   },
   open: {
-    // transform: 'translateX(0)'
-    opacity: '1',
-    pointerEvents: 'auto'
+    base: {
+      pointerEvents: 'auto'
+    },
+    bg: {
+      transform: 'translate3d(0, 0, 0) scaleY(1)'
+    }
   },
   list: {
     flex: '1 0 auto',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    cursor: 'pointer',
+    overflow: 'hidden'
   }
-}
+};
+var transitionEasing = 'cubic-bezier(0.215, 0.61, 0.355, 1)';
 
 // ---- React Class ----
-var sidebarClass = React.createClass( {
+var menuClass = React.createClass( {
 
   getDefaultProps: function() {
     return {
@@ -67,16 +78,16 @@ var sidebarClass = React.createClass( {
       var transitionTiming = ( ( index + 1 ) * 200 ) + 'ms';
       var transitionStyles = {
         enter: {
-          transition: 'transform ' + transitionTiming + ' ease, opacity ' + transitionTiming + ' ease',
-          transform: 'translateY(-' + ( ( index + 1 ) * 100 ) + '%)',
+          transition: 'transform ' + transitionTiming + ' ' + transitionEasing + ', opacity ' + transitionTiming + ' ' + transitionEasing,
+          transform: 'translate3d(0, -' + ( ( index + 1 ) * 100 ) + '%, 0)',
           opacity: '0'
         },
         enterActive: {
-          transform: 'translateX(0)',
+          transform: 'translate3d(0, 0, 0)',
           opacity: '1'
         },
         leave: {
-          transition: 'opacity 0.3s ease',
+          transition: 'opacity 0.2s ' + transitionEasing,
           opacity: '1'
         },
         leaveActive: {
@@ -85,18 +96,28 @@ var sidebarClass = React.createClass( {
       };
 
       return (
-        <SidebarItem transitionStyles={ transitionStyles }>{ navItem }</SidebarItem>
+        <MenuItem transitionStyles={ transitionStyles }>{ navItem }</MenuItem>
       );
     }, this );
 
     var baseStyles = merge(
-      sidebarStyles.base,
-      this.props.open && sidebarStyles.open
+      menuStyles.base,
+      this.props.open && menuStyles.open.base
+    );
+
+    var bgTransitionStyles = {
+      transition: 'transform ' + (( this.props.navItems.length - 1 ) * 250 ) + 'ms ' + transitionEasing
+    };
+    var bgStyles = merge(
+      menuStyles.bg,
+      bgTransitionStyles,
+      this.props.open && menuStyles.open.bg
     );
 
     return (
       <div style={ baseStyles } onClick={ this.props.onClick }>
-        <ReactStyleTransitionGroup component="ul" style={ sidebarStyles.list }>
+        <div style={ bgStyles }></div>
+        <ReactStyleTransitionGroup component="ul" style={ menuStyles.list }>
           { ( this.props.open ) ?
             navItems
           : null }
@@ -108,4 +129,4 @@ var sidebarClass = React.createClass( {
 } );
 
 // ==== Module Export ====
-module.exports = sidebarClass;
+module.exports = menuClass;
