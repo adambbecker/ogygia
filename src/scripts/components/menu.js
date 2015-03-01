@@ -1,7 +1,7 @@
 // =========================================
-// Sidebar.js
+// Menu.js
 // ----
-// Sidebar Demo
+// Menu Overlay Demo
 // =========================================
 
 // ---- External Dependencies ----
