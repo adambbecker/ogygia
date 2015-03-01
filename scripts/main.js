@@ -25495,7 +25495,6 @@ module.exports = require('./lib/React');
 
 // ---- External Dependencies ----
 var React = require('react');
-// var React = require( '../lib/react-with-addons' );
 var RouteHandler = require('react-router').RouteHandler;
 var merge = require( '../lib/merge' );
 var debounce = require( 'lodash-node/modern/functions/debounce' );
@@ -25624,7 +25623,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -25761,7 +25759,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 
 // ---- Internal Variables ----
 var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
@@ -25895,7 +25892,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -26008,7 +26004,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 
 // ---- Styles ----
 var flexStyles = {
@@ -26041,7 +26036,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -26103,7 +26097,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -26166,7 +26159,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -26267,7 +26259,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -26466,7 +26457,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var Navigation = require('react-router').Navigation;
 var merge = require( '../../lib/merge' );
 
@@ -26547,7 +26537,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
@@ -26604,7 +26593,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
@@ -26661,7 +26649,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
@@ -26714,7 +26701,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
@@ -26775,7 +26761,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 
 // ---- Internal Dependencies ----
 var DemoArea = require('../demoArea');
@@ -26877,7 +26862,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react/addons' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -27113,7 +27097,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -27162,7 +27145,6 @@ module.exports = React.createClass( {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -27221,16 +27203,13 @@ module.exports = React.createClass( {
 
 },{"../lib/merge":248,"../vars":249,"react":218}],237:[function(require,module,exports){
 // =========================================
-// Sidebar.js
+// Menu.js
 // ----
-// Sidebar Demo
+// Menu Overlay Demo
 // =========================================
 
 // ---- External Dependencies ----
-// var React = require( '../lib/react-with-addons' );
-// var ReactStyleTransitionGroup = React.addons.StyleTransitionGroup;
 var React = require( 'react' );
-// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var ReactStyleTransitionGroup = require( 'react-style-transition-group' );
 var merge = require( '../lib/merge' );
 
@@ -27321,7 +27300,7 @@ var menuClass = React.createClass( {displayName: "menuClass",
       };
 
       return (
-        React.createElement(MenuItem, {transitionStyles: transitionStyles }, navItem )
+        React.createElement(MenuItem, {key:  'menuItem-' + index, transitionStyles: transitionStyles }, navItem )
       );
     }, this );
 
@@ -27365,7 +27344,6 @@ module.exports = menuClass;
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -27403,7 +27381,6 @@ module.exports = menuItemClass;
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var Navigation = require('react-router').Navigation;
 var merge = require( '../lib/merge' );
 
@@ -27747,7 +27724,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -27876,7 +27852,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -27953,7 +27928,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -28513,7 +28487,6 @@ module.exports = blueprintClass;
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -28579,7 +28552,6 @@ module.exports = blueprintLineClass;
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../../lib/react-with-addons' );
 var merge = require( '../../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -28651,7 +28623,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Styles ----
@@ -28722,7 +28693,6 @@ module.exports = {
 
 // ---- External Dependencies ----
 var React = require( 'react' );
-// var React = require( '../lib/react-with-addons' );
 var merge = require( '../lib/merge' );
 
 // ---- Internal Dependencies ----
@@ -28869,12 +28839,6 @@ var routes = (
 Router.run(routes, function(Handler) {
   React.render(React.createElement(Handler, null), document.getElementById('main'));
 });
-
-
-// var React = require( './lib/react-with-addons' );
-// var APP = require('./components/app');
-//
-// React.render( <APP />, document.getElementById('main') );
 
 },{"./components/app":219,"./components/modal":239,"react":218,"react-router":20}],248:[function(require,module,exports){
 // ============================================
