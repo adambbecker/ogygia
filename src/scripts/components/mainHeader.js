@@ -15,13 +15,19 @@ var mainHeaderStyles = {
     width: '100%',
     padding: '24px',
     backgroundColor: projectVars.colors.blueWordPress,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    cursor: 'pointer'
   },
   h1: {
     float: 'left',
     fontSize: '36px',
     fontWeight: '300',
     color: 'white'
+  },
+  icon: {
+    fontSize: 'inherit',
+    margin: '-6px 16px 0 0',
+    verticalAlign: 'middle'
   },
   mediaQueries: {
     baseMedium: {
@@ -48,8 +54,8 @@ module.exports = React.createClass( {
 
   render: function() {
     return (
-      <header style={ this.getHeaderStyles() }>
-        <h1 style={ mainHeaderStyles.h1 }>UI Patterns</h1>
+      <header style={ this.getHeaderStyles() } onClick={ this.props.onClick }>
+        <h1 style={ mainHeaderStyles.h1 }><span className="noticon noticon-menu" style={ mainHeaderStyles.icon }></span>UI Patterns</h1>
       </header>
     );
   }

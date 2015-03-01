@@ -20,6 +20,7 @@ var TextInputsDemo = require('./demos/textInputs');
 var TextAreasDemo = require('./demos/textAreas');
 var FormValidationDemo = require('./demos/formValidation');
 var ModalsDemo = require('./demos/modals');
+var MenuDemo = require('./menu');
 
 // ---- Styles ----
 var projectVars = require( '../vars' );
@@ -47,7 +48,8 @@ module.exports = React.createClass( {
 
   getInitialState: function() {
     return {
-      mediaQuery: this.getCurrentMediaQuery()
+      mediaQuery: this.getCurrentMediaQuery(),
+      menuOpen: false
     };
   },
 
@@ -95,10 +97,16 @@ module.exports = React.createClass( {
     }
   },
 
+  toggleMenu: function() {
+    this.setState( {
+      menuOpen: ! this.state.menuOpen
+    } );
+  },
+
   render: function() {
     return (
       <div style={ appStyles }>
-        <MainHeader mediaQuery={ this.state.mediaQuery } />
+        <MainHeader mediaQuery={ this.state.mediaQuery } onClick={ this.toggleMenu } />
         <div style={ this.getDemoStyles() }>
           <TypographyDemo mediaQuery={ this.state.mediaQuery } />
           <MetricsDemo mediaQuery={ this.state.mediaQuery } />
@@ -109,6 +117,7 @@ module.exports = React.createClass( {
           <PrimaryButtonsDemo mediaQuery={ this.state.mediaQuery } />
           <ModalsDemo mediaQuery={ this.state.mediaQuery } />
         </div>
+        <MenuDemo open={ this.state.menuOpen } onClick={ this.toggleMenu } />
         <RouteHandler mediaQuery={ this.state.mediaQuery } />
       </div>
     );
