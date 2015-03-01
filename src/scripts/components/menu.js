@@ -96,7 +96,7 @@ var menuClass = React.createClass( {
       };
 
       return (
-        <MenuItem transitionStyles={ transitionStyles }>{ navItem }</MenuItem>
+        <MenuItem key={ 'menuItem-' + index } transitionStyles={ transitionStyles }>{ navItem }</MenuItem>
       );
     }, this );
 
